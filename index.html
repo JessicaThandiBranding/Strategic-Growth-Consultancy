@@ -101,8 +101,8 @@
         <p class="eyebrow centered">What I Do</p>
         <h2 id="services-title">What I can help you with</h2>
         <div class="service-grid">
-          <details class="service-card" data-service-card>
-            <summary>
+          <article class="service-card">
+            <button class="card-trigger" type="button" data-panel-trigger="brand-strategy" aria-expanded="false" aria-controls="panel-brand-strategy">
               <svg viewBox="0 0 48 48" aria-hidden="true">
                 <path d="M24 41a17 17 0 1 1 17-17" />
                 <path d="M24 31a7 7 0 1 1 7-7" />
@@ -112,8 +112,76 @@
               <h3>Brand Strategy &amp; Positioning</h3>
               <p>Clarifying who you are, what you offer, who you serve, and how your brand should be experienced.</p>
               <span class="text-link">Explore</span>
-            </summary>
-            <div class="service-detail">
+            </button>
+          </article>
+          <article class="service-card">
+            <button class="card-trigger" type="button" data-panel-trigger="growth-strategy" aria-expanded="false" aria-controls="panel-growth-strategy">
+              <svg viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M8 39h32" />
+                <path d="M13 34V23" />
+                <path d="M23 34V15" />
+                <path d="M33 34V9" />
+                <path d="M11 20 21 12l8 6 9-11" />
+              </svg>
+              <h3>Growth Strategy</h3>
+              <p>Identifying opportunities, creating practical strategies, and building sustainable momentum for your next stage of growth.</p>
+              <span class="text-link">Explore</span>
+            </button>
+          </article>
+          <article class="service-card">
+            <button class="card-trigger" type="button" data-panel-trigger="client-experience" aria-expanded="false" aria-controls="panel-client-experience">
+              <svg viewBox="0 0 48 48" aria-hidden="true">
+                <circle cx="24" cy="16" r="8" />
+                <path d="M10 42c2-9 8-14 14-14s12 5 14 14" />
+              </svg>
+              <h3>Client Experience</h3>
+              <p>Improving the way clients experience your brand before, during, and after working with you.</p>
+              <span class="text-link">Explore</span>
+            </button>
+          </article>
+          <article class="service-card">
+            <button class="card-trigger" type="button" data-panel-trigger="marketing-content" aria-expanded="false" aria-controls="panel-marketing-content">
+              <svg viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M13 35 35 13l6 6-22 22-9 2 3-8Z" />
+                <path d="m30 18 6 6" />
+              </svg>
+              <h3>Marketing &amp; Content Support</h3>
+              <p>Creating structure around your marketing so your brand shows up consistently and professionally.</p>
+              <span class="text-link">Explore</span>
+            </button>
+          </article>
+          <article class="service-card">
+            <button class="card-trigger" type="button" data-panel-trigger="events-activations" aria-expanded="false" aria-controls="panel-events-activations">
+              <svg viewBox="0 0 48 48" aria-hidden="true">
+                <rect x="9" y="12" width="30" height="26" rx="2" />
+                <path d="M16 8v8" />
+                <path d="M32 8v8" />
+                <path d="M9 21h30" />
+                <path d="m18 31 4 4 8-9" />
+              </svg>
+              <h3>Events &amp; Brand Activations</h3>
+              <p>Helping businesses create thoughtful, memorable experiences that build connection and credibility.</p>
+              <span class="text-link">Explore</span>
+            </button>
+          </article>
+          <article class="service-card">
+            <button class="card-trigger" type="button" data-panel-trigger="brand-collateral" aria-expanded="false" aria-controls="panel-brand-collateral">
+              <svg viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M15 7h14l8 8v26H15Z" />
+                <path d="M29 7v8h8" />
+                <path d="M20 24h12" />
+                <path d="M20 31h12" />
+              </svg>
+              <h3>Brand Collateral</h3>
+              <p>Creating polished, professional brand assets that inspire confidence and reflect the quality of your business.</p>
+              <span class="text-link">Explore</span>
+            </button>
+          </article>
+        </div>
+        <div class="panel-region service-panels" data-panel-region="services">
+          <article class="detail-panel" id="panel-brand-strategy" data-panel="brand-strategy" hidden>
+            <button class="panel-close" type="button" data-panel-close aria-label="Close expanded service">Close</button>
+            <div class="panel-copy">
               <p class="service-hook">Build clarity.</p>
               <p>Strong brands are not built by accident. They begin with clarity.</p>
               <p>
@@ -121,6 +189,8 @@
                 for growth, I help define what makes your business different and how that should be
                 experienced across every customer touchpoint.
               </p>
+            </div>
+            <div class="panel-list">
               <p>Every business is different, but this could include:</p>
               <ul>
                 <li>Brand positioning</li>
@@ -132,21 +202,10 @@
               </ul>
               <p class="closing-thought">The strongest brands are not always the loudest - they are simply the clearest.</p>
             </div>
-          </details>
-          <details class="service-card" data-service-card>
-            <summary>
-              <svg viewBox="0 0 48 48" aria-hidden="true">
-                <path d="M8 39h32" />
-                <path d="M13 34V23" />
-                <path d="M23 34V15" />
-                <path d="M33 34V9" />
-                <path d="M11 20 21 12l8 6 9-11" />
-              </svg>
-              <h3>Growth Strategy</h3>
-              <p>Identifying opportunities, creating practical strategies, and building sustainable momentum for your next stage of growth.</p>
-              <span class="text-link">Explore</span>
-            </summary>
-            <div class="service-detail">
+          </article>
+          <article class="detail-panel" id="panel-growth-strategy" data-panel="growth-strategy" hidden>
+            <button class="panel-close" type="button" data-panel-close aria-label="Close expanded service">Close</button>
+            <div class="panel-copy">
               <p class="service-hook">Create momentum.</p>
               <p>Growth is not about doing more.</p>
               <p>
@@ -159,6 +218,8 @@
                 Whether you are exploring a new direction, refining your services, or preparing for
                 your next stage of growth, I help bring clarity, structure and momentum to the journey.
               </p>
+            </div>
+            <div class="panel-list">
               <p>Every business is different, but this could include:</p>
               <ul>
                 <li>Business growth strategy</li>
@@ -170,18 +231,10 @@
               </ul>
               <p class="closing-thought">Sustainable growth is not about doing more. It is about focusing on what matters most.</p>
             </div>
-          </details>
-          <details class="service-card" data-service-card>
-            <summary>
-              <svg viewBox="0 0 48 48" aria-hidden="true">
-                <circle cx="24" cy="16" r="8" />
-                <path d="M10 42c2-9 8-14 14-14s12 5 14 14" />
-              </svg>
-              <h3>Client Experience</h3>
-              <p>Improving the way clients experience your brand before, during, and after working with you.</p>
-              <span class="text-link">Explore</span>
-            </summary>
-            <div class="service-detail">
+          </article>
+          <article class="detail-panel" id="panel-client-experience" data-panel="client-experience" hidden>
+            <button class="panel-close" type="button" data-panel-close aria-label="Close expanded service">Close</button>
+            <div class="panel-copy">
               <p class="service-hook">Design experiences people remember.</p>
               <p>Your brand is not just what people see. It is what they experience.</p>
               <p>
@@ -190,6 +243,8 @@
                 relationships and create lasting impressions that people remember long after the work
                 is done.
               </p>
+            </div>
+            <div class="panel-list">
               <p>Every business is different, but this could include:</p>
               <ul>
                 <li>Client journey mapping</li>
@@ -203,18 +258,10 @@
               </ul>
               <p class="closing-thought">Great experiences do not end with a transaction - they become the reason people return and recommend your business.</p>
             </div>
-          </details>
-          <details class="service-card" data-service-card>
-            <summary>
-              <svg viewBox="0 0 48 48" aria-hidden="true">
-                <path d="M13 35 35 13l6 6-22 22-9 2 3-8Z" />
-                <path d="m30 18 6 6" />
-              </svg>
-              <h3>Marketing &amp; Content Support</h3>
-              <p>Creating structure around your marketing so your brand shows up consistently and professionally.</p>
-              <span class="text-link">Explore</span>
-            </summary>
-            <div class="service-detail">
+          </article>
+          <article class="detail-panel" id="panel-marketing-content" data-panel="marketing-content" hidden>
+            <button class="panel-close" type="button" data-panel-close aria-label="Close expanded service">Close</button>
+            <div class="panel-copy">
               <p class="service-hook">Show up consistently.</p>
               <p>Marketing does not need to be louder. It needs to be clearer, more consistent and more intentional.</p>
               <p>
@@ -223,6 +270,8 @@
                 presence, I help bring structure and purpose to your marketing so it reflects the
                 quality of your business.
               </p>
+            </div>
+            <div class="panel-list">
               <p>Every business is different, but this could include:</p>
               <ul>
                 <li>Marketing strategy</li>
@@ -236,21 +285,10 @@
               </ul>
               <p class="closing-thought">Consistency builds familiarity. Familiarity builds trust.</p>
             </div>
-          </details>
-          <details class="service-card" data-service-card>
-            <summary>
-              <svg viewBox="0 0 48 48" aria-hidden="true">
-                <rect x="9" y="12" width="30" height="26" rx="2" />
-                <path d="M16 8v8" />
-                <path d="M32 8v8" />
-                <path d="M9 21h30" />
-                <path d="m18 31 4 4 8-9" />
-              </svg>
-              <h3>Events &amp; Brand Activations</h3>
-              <p>Helping businesses create thoughtful, memorable experiences that build connection and credibility.</p>
-              <span class="text-link">Explore</span>
-            </summary>
-            <div class="service-detail">
+          </article>
+          <article class="detail-panel" id="panel-events-activations" data-panel="events-activations" hidden>
+            <button class="panel-close" type="button" data-panel-close aria-label="Close expanded service">Close</button>
+            <div class="panel-copy">
               <p class="service-hook">Create moments that matter.</p>
               <p>The strongest brands are not built through marketing alone.</p>
               <p>
@@ -259,6 +297,8 @@
                 networking opportunity, brand activation or corporate experience, I help ensure every
                 detail supports your brand and reflects the experience you want people to remember.
               </p>
+            </div>
+            <div class="panel-list">
               <p>Every business is different, but this could include:</p>
               <ul>
                 <li>Client events</li>
@@ -272,20 +312,10 @@
               </ul>
               <p class="closing-thought">The best events do not just bring people together - they leave people talking long afterwards.</p>
             </div>
-          </details>
-          <details class="service-card" data-service-card>
-            <summary>
-              <svg viewBox="0 0 48 48" aria-hidden="true">
-                <path d="M15 7h14l8 8v26H15Z" />
-                <path d="M29 7v8h8" />
-                <path d="M20 24h12" />
-                <path d="M20 31h12" />
-              </svg>
-              <h3>Brand Collateral</h3>
-              <p>Creating polished, professional brand assets that inspire confidence and reflect the quality of your business.</p>
-              <span class="text-link">Explore</span>
-            </summary>
-            <div class="service-detail">
+          </article>
+          <article class="detail-panel" id="panel-brand-collateral" data-panel="brand-collateral" hidden>
+            <button class="panel-close" type="button" data-panel-close aria-label="Close expanded service">Close</button>
+            <div class="panel-copy">
               <p class="service-hook">Present your business with confidence.</p>
               <p>First impressions matter, but consistency is what builds confidence.</p>
               <p>
@@ -293,6 +323,8 @@
                 how your business is perceived. I help create polished, professional brand assets that
                 inspire confidence and reflect the quality of your business.
               </p>
+            </div>
+            <div class="panel-list">
               <p>Every business is different, but this could include:</p>
               <ul>
                 <li>Company profiles</li>
@@ -306,7 +338,7 @@
               </ul>
               <p class="closing-thought">Every touchpoint is an opportunity to reinforce the quality of your business.</p>
             </div>
-          </details>
+          </article>
         </div>
       </section>
 
@@ -319,39 +351,16 @@
       </section>
 
       <section class="offer-section" id="approach" aria-label="Consulting offers">
-        <details class="offer-main expandable-offer">
-          <summary>
+        <article class="offer-main expandable-offer">
+          <button class="offer-trigger" type="button" data-panel-trigger="approach-details" aria-expanded="false" aria-controls="panel-approach-details">
             <p class="eyebrow">My Approach</p>
             <h2>Clear thinking.<br />Beautiful execution.<br />Practical growth.</h2>
             <p>A simple, collaborative process designed to bring clarity, structure, and momentum.</p>
             <span class="button">Discover the Approach</span>
-          </summary>
-          <div class="expanded-panel">
-            <p>Every business is different.</p>
-            <p>But meaningful growth rarely happens by accident.</p>
-            <p>
-              It comes from making thoughtful decisions, connecting the dots, and creating alignment
-              across every part of the business.
-            </p>
-            <p>That's the lens I bring to every project, regardless of its size or industry.</p>
-            <p>Rather than focusing on one area in isolation, I look at the business as a whole.</p>
-            <p>My approach is built around six simple principles.</p>
-            <ul class="principle-list">
-              <li><strong>Build clarity.</strong> Know who you are, what you offer, and why people should choose you.</li>
-              <li><strong>Create momentum.</strong> Identify the right opportunities and focus on what will make the greatest impact.</li>
-              <li><strong>Design experiences people remember.</strong> Deliver on your promise at every stage of the client journey.</li>
-              <li><strong>Show up consistently.</strong> Create confidence through intentional, consistent communication.</li>
-              <li><strong>Create moments that matter.</strong> Build meaningful relationships through memorable experiences.</li>
-              <li><strong>Present your business with confidence.</strong> Ensure every client touchpoint reflects the quality of your business.</li>
-            </ul>
-            <p>
-              When these six principles work together, businesses become clearer, stronger, and
-              better positioned for sustainable growth.
-            </p>
-          </div>
-        </details>
-        <details class="offer-card expandable-offer" id="audit">
-          <summary>
+          </button>
+        </article>
+        <article class="offer-card expandable-offer" id="audit">
+          <button class="offer-trigger" type="button" data-panel-trigger="audit-details" aria-expanded="false" aria-controls="panel-audit-details">
             <p class="eyebrow">Signature Offer</p>
             <h3>Brand &amp; Growth Audit</h3>
             <p>
@@ -359,34 +368,94 @@
               Ideal if you feel your brand has potential but need a clearer view of what to improve first.
             </p>
             <span class="text-link">View Details</span>
-          </summary>
-          <div class="expanded-panel compact">
-            <ul class="audit-list">
-              <li>Brand Positioning</li>
-              <li>Website Review</li>
-              <li>LinkedIn &amp; Digital Presence</li>
-              <li>Google Business Profile</li>
-              <li>Customer Journey</li>
-              <li>Competitor Snapshot</li>
-              <li>Key Opportunities</li>
-              <li>Prioritised Recommendations</li>
-            </ul>
-            <a class="button" href="#enquiry" data-enquiry="Brand &amp; Growth Audit">Request a Brand &amp; Growth Audit</a>
-          </div>
-        </details>
+          </button>
+        </article>
         <figure class="offer-image">
           <img src="assets/Notebook_JTO_Website.png" alt="Notebook and pen on a sunlit stone surface" />
         </figure>
         <article class="offer-card partnership-card">
-          <p class="eyebrow">Ongoing Partnership</p>
-          <h3>Strategic Growth Partnership</h3>
-          <p>
-            For businesses looking for ongoing strategic support, I work as a trusted partner,
-            helping turn ideas into action, maintain momentum, and provide clarity as your business
-            continues to grow.
-          </p>
+          <button class="offer-trigger" type="button" data-panel-trigger="partnership-details" aria-expanded="false" aria-controls="panel-partnership-details">
+            <p class="eyebrow">Ongoing Partnership</p>
+            <h3>Strategic Growth Partnership</h3>
+            <p>
+              For businesses looking for ongoing strategic support, I work as a trusted partner,
+              helping turn ideas into action, maintain momentum, and provide clarity as your business
+              continues to grow.
+            </p>
+          </button>
           <a class="button" href="#enquiry" data-enquiry="Strategic Growth Partnership">Let's explore what this could look like.</a>
         </article>
+        <div class="panel-region offer-panels" data-panel-region="offers">
+          <article class="detail-panel offer-detail-panel" id="panel-approach-details" data-panel="approach-details" hidden>
+            <button class="panel-close" type="button" data-panel-close aria-label="Close expanded offer">Close</button>
+            <div class="panel-copy">
+              <p class="service-hook">Clear thinking.</p>
+              <p>Every business is different.</p>
+              <p>But meaningful growth rarely happens by accident.</p>
+              <p>
+                It comes from making thoughtful decisions, connecting the dots, and creating alignment
+                across every part of the business.
+              </p>
+              <p>That's the lens I bring to every project, regardless of its size or industry.</p>
+              <p>Rather than focusing on one area in isolation, I look at the business as a whole.</p>
+            </div>
+            <div class="panel-list">
+              <p>My approach is built around six simple principles.</p>
+              <ul class="principle-list">
+                <li><strong>Build clarity.</strong> Know who you are, what you offer, and why people should choose you.</li>
+                <li><strong>Create momentum.</strong> Identify the right opportunities and focus on what will make the greatest impact.</li>
+                <li><strong>Design experiences people remember.</strong> Deliver on your promise at every stage of the client journey.</li>
+                <li><strong>Show up consistently.</strong> Create confidence through intentional, consistent communication.</li>
+                <li><strong>Create moments that matter.</strong> Build meaningful relationships through memorable experiences.</li>
+                <li><strong>Present your business with confidence.</strong> Ensure every client touchpoint reflects the quality of your business.</li>
+              </ul>
+              <p class="closing-thought">
+                When these six principles work together, businesses become clearer, stronger, and
+                better positioned for sustainable growth.
+              </p>
+            </div>
+          </article>
+          <article class="detail-panel offer-detail-panel" id="panel-audit-details" data-panel="audit-details" hidden>
+            <button class="panel-close" type="button" data-panel-close aria-label="Close expanded offer">Close</button>
+            <div class="panel-copy">
+              <p class="service-hook">Brand &amp; Growth Audit</p>
+              <p>
+                A focused review of your brand presence, client experience, and growth opportunities.
+                Ideal if you feel your brand has potential but need a clearer view of what to improve first.
+              </p>
+              <a class="button" href="#enquiry" data-enquiry="Brand &amp; Growth Audit">Request a Brand &amp; Growth Audit</a>
+            </div>
+            <div class="panel-list">
+              <p>The review can include:</p>
+              <ul class="audit-list">
+                <li>Brand Positioning</li>
+                <li>Website Review</li>
+                <li>LinkedIn &amp; Digital Presence</li>
+                <li>Google Business Profile</li>
+                <li>Customer Journey</li>
+                <li>Competitor Snapshot</li>
+                <li>Key Opportunities</li>
+                <li>Prioritised Recommendations</li>
+              </ul>
+            </div>
+          </article>
+          <article class="detail-panel offer-detail-panel" id="panel-partnership-details" data-panel="partnership-details" hidden>
+            <button class="panel-close" type="button" data-panel-close aria-label="Close expanded offer">Close</button>
+            <div class="panel-copy">
+              <p class="service-hook">Strategic Growth Partnership</p>
+              <p>
+                For businesses looking for ongoing strategic support, I work as a trusted partner,
+                helping turn ideas into action, maintain momentum, and provide clarity as your business
+                continues to grow.
+              </p>
+              <a class="button" href="#enquiry" data-enquiry="Strategic Growth Partnership">Let's explore what this could look like.</a>
+            </div>
+            <div class="panel-list">
+              <p>This partnership is shaped around the support your business needs most, with a focus on clarity, consistency and practical progress.</p>
+              <p class="closing-thought">The right strategic support helps good ideas become considered action.</p>
+            </div>
+          </article>
+        </div>
       </section>
 
       <section class="contact-section" id="contact" aria-labelledby="contact-title">
@@ -400,11 +469,11 @@
             shape what comes next.
           </p>
           <div class="contact-details" aria-label="Contact details">
-            <span>Let's Connect</span>
+            <span>Contact Details</span>
             <a href="tel:+27763382467">+27 76 338 2467</a>
             <a href="mailto:jessthandi.jo@gmail.com">jessthandi.jo@gmail.com</a>
           </div>
-          <a class="button" href="#enquiry">Start the Conversation</a>
+          <a class="button" href="mailto:jessthandi.jo@gmail.com?subject=Let's%20Start%20the%20Conversation">Start the Conversation</a>
           <a
             class="linkedin-link"
             href="https://www.linkedin.com/in/jessica-owens-6a4118104/"
