@@ -5,8 +5,11 @@ const panelTriggers = document.querySelectorAll("[data-panel-trigger]");
 const servicePanelHome = document.querySelector('[data-panel-region="services"]');
 const offerPanelHome = document.querySelector('[data-panel-region="offers"]');
 const mobileServiceQuery = window.matchMedia("(max-width: 620px)");
+const mobilePanelQuery = window.matchMedia("(max-width: 860px)");
 const enquirySelect = document.querySelector("[data-enquiry-select]");
 const enquiryLinks = document.querySelectorAll("[data-enquiry]");
+const enquiryForm = document.querySelector("[data-form]");
+const formSuccess = document.querySelector("[data-form-success]");
 
 const syncHeader = () => {
   header.classList.toggle("is-scrolled", window.scrollY > 12);
@@ -39,7 +42,7 @@ const isOfferTrigger = (trigger) => trigger?.classList.contains("offer-trigger")
 const placeServicePanel = (panel, trigger) => {
   if (!panel || !trigger || !isServiceTrigger(trigger)) return;
 
-  if (mobileServiceQuery.matches) {
+  if (mobilePanelQuery.matches) {
     trigger.closest(".service-card")?.insertAdjacentElement("afterend", panel);
     return;
   }
@@ -50,7 +53,7 @@ const placeServicePanel = (panel, trigger) => {
 const placeOfferPanel = (panel, trigger) => {
   if (!panel || !trigger || !isOfferTrigger(trigger)) return;
 
-  if (mobileServiceQuery.matches) {
+  if (mobilePanelQuery.matches) {
     trigger.closest(".expandable-offer, .partnership-card")?.insertAdjacentElement("afterend", panel);
     return;
   }
@@ -81,13 +84,13 @@ const openPanel = (panel, trigger) => {
   trigger.setAttribute("aria-expanded", "true");
   trigger.closest(".service-card, .expandable-offer")?.classList.add("is-active");
 
-  if (isServiceTrigger(trigger) && mobileServiceQuery.matches) {
+  if (isServiceTrigger(trigger) && mobilePanelQuery.matches) {
     window.requestAnimationFrame(() => {
       panel.scrollIntoView({ block: "nearest", behavior: "smooth" });
     });
   }
 
-  if (isOfferTrigger(trigger) && mobileServiceQuery.matches) {
+  if (isOfferTrigger(trigger) && mobilePanelQuery.matches) {
     window.requestAnimationFrame(() => {
       panel.scrollIntoView({ block: "nearest", behavior: "smooth" });
     });
@@ -142,7 +145,30 @@ enquiryLinks.forEach((link) => {
   });
 });
 
-mobileServiceQuery.addEventListener("change", () => {
+enquiryForm?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const submitButton = enquiryForm.querySelector("[type='submit']");
+  const formData = new FormData(enquiryForm);
+
+  submitButton.disabled = true;
+  formSuccess?.classList.remove("is-visible");
+
+  try {
+    await fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString(),
+    });
+
+    formSuccess?.classList.add("is-visible");
+    formSuccess?.focus();
+  } finally {
+    submitButton.disabled = false;
+  }
+});
+
+mobilePanelQuery.addEventListener("change", () => {
   document.querySelectorAll(".service-grid [data-panel]").forEach((panel) => {
     servicePanelHome?.append(panel);
   });

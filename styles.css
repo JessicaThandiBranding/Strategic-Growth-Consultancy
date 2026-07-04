@@ -1192,6 +1192,12 @@ em {
     padding: 34px 28px;
   }
 
+  .service-panels,
+  .offer-section > .offer-panels {
+    display: none;
+    border-top: 0;
+  }
+
   .panel-close {
     top: 14px;
     right: 16px;
