@@ -191,7 +191,10 @@ summary::-webkit-details-marker {
   min-height: 598px;
   background:
     linear-gradient(90deg, var(--paper) 0%, rgba(247, 244, 237, 0.64) 23%, rgba(247, 244, 237, 0) 52%),
-    url("assets/Hero_JTO_Website.png") center / cover no-repeat;
+    image-set(
+      url("assets/Hero_JTO_Website-1600.webp") type("image/webp"),
+      url("assets/Hero_JTO_Website.png") type("image/png")
+    ) center / cover no-repeat;
 }
 
 .eyebrow {
@@ -842,6 +845,32 @@ em {
   font-weight: 700;
 }
 
+.thanks-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: clamp(28px, 6vw, 80px);
+  background: var(--paper);
+}
+
+.thanks-panel {
+  width: min(680px, 100%);
+  padding: clamp(34px, 6vw, 68px);
+  border: 1px solid var(--line);
+  background: rgba(255, 253, 248, 0.72);
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.thanks-panel h1 {
+  margin-bottom: 20px;
+}
+
+.thanks-panel p:not(.eyebrow) {
+  margin: 0 auto 28px;
+  color: var(--muted);
+}
+
 .about-copy p:not(.eyebrow) + p:not(.eyebrow) {
   margin-top: 22px;
 }
@@ -1107,7 +1136,10 @@ em {
     margin-top: 76px;
     background:
       linear-gradient(180deg, rgba(247, 244, 237, 0) 64%, var(--paper) 100%),
-      url("assets/Hero_JTO_Website.png") center / cover no-repeat;
+      image-set(
+        url("assets/Hero_JTO_Website-1100.webp") type("image/webp"),
+        url("assets/Hero_JTO_Website.png") type("image/png")
+      ) center / cover no-repeat;
   }
 
   .about-section {
@@ -1209,6 +1241,15 @@ em {
     padding-inline: 22px;
   }
 
+  .hero-media {
+    background:
+      linear-gradient(180deg, rgba(247, 244, 237, 0) 64%, var(--paper) 100%),
+      image-set(
+        url("assets/Hero_JTO_Website-760.webp") type("image/webp"),
+        url("assets/Hero_JTO_Website.png") type("image/png")
+      ) center / cover no-repeat;
+  }
+
   .button-row {
     align-items: stretch;
     flex-direction: column;
@@ -1283,7 +1324,8 @@ em {
   }
 
   .offer-section > .offer-panels {
-    border-top: 1px solid var(--line);
+    display: none;
+    border-top: 0;
   }
 
   .detail-panel {

@@ -3,11 +3,10 @@ const toggle = document.querySelector("[data-nav-toggle]");
 const nav = document.querySelector("[data-nav]");
 const panelTriggers = document.querySelectorAll("[data-panel-trigger]");
 const servicePanelHome = document.querySelector('[data-panel-region="services"]');
+const offerPanelHome = document.querySelector('[data-panel-region="offers"]');
 const mobileServiceQuery = window.matchMedia("(max-width: 620px)");
 const enquirySelect = document.querySelector("[data-enquiry-select]");
 const enquiryLinks = document.querySelectorAll("[data-enquiry]");
-const enquiryForm = document.querySelector("[data-form]");
-const formSuccess = document.querySelector("[data-form-success]");
 
 const syncHeader = () => {
   header.classList.toggle("is-scrolled", window.scrollY > 12);
@@ -35,6 +34,7 @@ const closePanel = (panel, trigger, instant = false) => {
 };
 
 const isServiceTrigger = (trigger) => trigger?.classList.contains("card-trigger");
+const isOfferTrigger = (trigger) => trigger?.classList.contains("offer-trigger");
 
 const placeServicePanel = (panel, trigger) => {
   if (!panel || !trigger || !isServiceTrigger(trigger)) return;
@@ -47,10 +47,23 @@ const placeServicePanel = (panel, trigger) => {
   servicePanelHome?.append(panel);
 };
 
+const placeOfferPanel = (panel, trigger) => {
+  if (!panel || !trigger || !isOfferTrigger(trigger)) return;
+
+  if (mobileServiceQuery.matches) {
+    trigger.closest(".expandable-offer, .partnership-card")?.insertAdjacentElement("afterend", panel);
+    return;
+  }
+
+  offerPanelHome?.append(panel);
+};
+
 const openPanel = (panel, trigger) => {
   if (!panel || !trigger) return;
 
-  const regionSelector = isServiceTrigger(trigger) ? '.service-panels [data-panel], .service-grid [data-panel]' : '.offer-panels [data-panel]';
+  const regionSelector = isServiceTrigger(trigger)
+    ? '.service-panels [data-panel], .service-grid [data-panel]'
+    : '.offer-panels [data-panel], .offer-section > [data-panel]';
   const regionPanels = document.querySelectorAll(regionSelector);
 
   regionPanels.forEach((otherPanel) => {
@@ -61,6 +74,7 @@ const openPanel = (panel, trigger) => {
   });
 
   placeServicePanel(panel, trigger);
+  placeOfferPanel(panel, trigger);
   panel.hidden = false;
   panel.classList.remove("is-closing");
   panel.classList.add("is-visible");
@@ -68,6 +82,12 @@ const openPanel = (panel, trigger) => {
   trigger.closest(".service-card, .expandable-offer")?.classList.add("is-active");
 
   if (isServiceTrigger(trigger) && mobileServiceQuery.matches) {
+    window.requestAnimationFrame(() => {
+      panel.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    });
+  }
+
+  if (isOfferTrigger(trigger) && mobileServiceQuery.matches) {
     window.requestAnimationFrame(() => {
       panel.scrollIntoView({ block: "nearest", behavior: "smooth" });
     });
@@ -122,38 +142,12 @@ enquiryLinks.forEach((link) => {
   });
 });
 
-enquiryForm?.addEventListener("submit", async (event) => {
-  event.preventDefault();
-
-  const submitButton = enquiryForm.querySelector("[type='submit']");
-  const formData = new FormData(enquiryForm);
-
-  submitButton.disabled = true;
-  formSuccess?.classList.remove("is-visible");
-
-  try {
-    const response = await fetch(enquiryForm.action || "/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString(),
-    });
-
-    if (!response.ok) {
-      throw new Error("Form submission failed");
-    }
-
-    formSuccess?.classList.add("is-visible");
-    formSuccess?.focus();
-  } catch (error) {
-    window.location.href = `mailto:jessthandi.jo@gmail.com?subject=Website%20Enquiry`;
-  } finally {
-    submitButton.disabled = false;
-  }
-});
-
 mobileServiceQuery.addEventListener("change", () => {
   document.querySelectorAll(".service-grid [data-panel]").forEach((panel) => {
     servicePanelHome?.append(panel);
+  });
+  document.querySelectorAll(".offer-section > [data-panel]").forEach((panel) => {
+    offerPanelHome?.append(panel);
   });
 });
 
