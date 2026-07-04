@@ -2,9 +2,11 @@ const header = document.querySelector("[data-header]");
 const toggle = document.querySelector("[data-nav-toggle]");
 const nav = document.querySelector("[data-nav]");
 const panelTriggers = document.querySelectorAll("[data-panel-trigger]");
-const panelRegions = document.querySelectorAll("[data-panel-region]");
+const servicePanelHome = document.querySelector('[data-panel-region="services"]');
+const mobileServiceQuery = window.matchMedia("(max-width: 620px)");
 const enquirySelect = document.querySelector("[data-enquiry-select]");
 const enquiryLinks = document.querySelectorAll("[data-enquiry]");
+const enquiryForm = document.querySelector("[data-form]");
 const formSuccess = document.querySelector("[data-form-success]");
 
 const syncHeader = () => {
@@ -32,11 +34,24 @@ const closePanel = (panel, trigger, instant = false) => {
   }, 200);
 };
 
+const isServiceTrigger = (trigger) => trigger?.classList.contains("card-trigger");
+
+const placeServicePanel = (panel, trigger) => {
+  if (!panel || !trigger || !isServiceTrigger(trigger)) return;
+
+  if (mobileServiceQuery.matches) {
+    trigger.closest(".service-card")?.insertAdjacentElement("afterend", panel);
+    return;
+  }
+
+  servicePanelHome?.append(panel);
+};
+
 const openPanel = (panel, trigger) => {
   if (!panel || !trigger) return;
 
-  const region = panel.closest("[data-panel-region]");
-  const regionPanels = region?.querySelectorAll("[data-panel]") || [];
+  const regionSelector = isServiceTrigger(trigger) ? '.service-panels [data-panel], .service-grid [data-panel]' : '.offer-panels [data-panel]';
+  const regionPanels = document.querySelectorAll(regionSelector);
 
   regionPanels.forEach((otherPanel) => {
     if (otherPanel !== panel) {
@@ -45,11 +60,18 @@ const openPanel = (panel, trigger) => {
     }
   });
 
+  placeServicePanel(panel, trigger);
   panel.hidden = false;
   panel.classList.remove("is-closing");
   panel.classList.add("is-visible");
   trigger.setAttribute("aria-expanded", "true");
   trigger.closest(".service-card, .expandable-offer")?.classList.add("is-active");
+
+  if (isServiceTrigger(trigger) && mobileServiceQuery.matches) {
+    window.requestAnimationFrame(() => {
+      panel.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    });
+  }
 };
 
 toggle.addEventListener("click", () => {
@@ -80,16 +102,14 @@ panelTriggers.forEach((trigger) => {
   });
 });
 
-panelRegions.forEach((region) => {
-  region.addEventListener("click", (event) => {
-    const closeButton = event.target.closest("[data-panel-close]");
+document.addEventListener("click", (event) => {
+  const closeButton = event.target.closest("[data-panel-close]");
 
-    if (!closeButton) return;
+  if (!closeButton) return;
 
-    const panel = closeButton.closest("[data-panel]");
-    const trigger = document.querySelector(`[data-panel-trigger="${panel?.dataset.panel}"]`);
-    closePanel(panel, trigger);
-  });
+  const panel = closeButton.closest("[data-panel]");
+  const trigger = document.querySelector(`[data-panel-trigger="${panel?.dataset.panel}"]`);
+  closePanel(panel, trigger);
 });
 
 enquiryLinks.forEach((link) => {
@@ -102,10 +122,40 @@ enquiryLinks.forEach((link) => {
   });
 });
 
-if (formSuccess && new URLSearchParams(window.location.search).get("success") === "true") {
-  formSuccess.classList.add("is-visible");
-  formSuccess.focus();
-}
+enquiryForm?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const submitButton = enquiryForm.querySelector("[type='submit']");
+  const formData = new FormData(enquiryForm);
+
+  submitButton.disabled = true;
+  formSuccess?.classList.remove("is-visible");
+
+  try {
+    const response = await fetch(enquiryForm.action || "/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString(),
+    });
+
+    if (!response.ok) {
+      throw new Error("Form submission failed");
+    }
+
+    formSuccess?.classList.add("is-visible");
+    formSuccess?.focus();
+  } catch (error) {
+    window.location.href = `mailto:jessthandi.jo@gmail.com?subject=Website%20Enquiry`;
+  } finally {
+    submitButton.disabled = false;
+  }
+});
+
+mobileServiceQuery.addEventListener("change", () => {
+  document.querySelectorAll(".service-grid [data-panel]").forEach((panel) => {
+    servicePanelHome?.append(panel);
+  });
+});
 
 window.addEventListener("scroll", syncHeader, { passive: true });
 syncHeader();

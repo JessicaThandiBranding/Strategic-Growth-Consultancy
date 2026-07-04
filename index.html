@@ -503,8 +503,9 @@
           class="enquiry-form"
           name="contact"
           method="POST"
-          action="/?success=true#enquiry"
+          action="/"
           data-netlify="true"
+          netlify
           netlify-honeypot="bot-field"
           data-form
         >
@@ -512,8 +513,8 @@
           <p class="hidden-field">
             <label>Do not fill this out if you're human: <input name="bot-field" /></label>
           </p>
-          <div class="form-success" data-form-success tabindex="-1">
-            Thank you - your enquiry has been received. I'll be in touch soon.
+          <div class="form-success" data-form-success role="status" aria-live="polite" tabindex="-1">
+            Thank you. Your enquiry has been received and I'll be in touch shortly.
           </div>
           <label>
             <span>Name</span>
@@ -535,15 +536,15 @@
             <span>What are you interested in?</span>
             <select name="interest" data-enquiry-select required>
               <option value="">Please select</option>
-              <option>Brand &amp; Growth Audit</option>
-              <option>Strategic Growth Partnership</option>
-              <option>Brand Strategy &amp; Positioning</option>
-              <option>Growth Strategy</option>
-              <option>Client Experience</option>
-              <option>Marketing &amp; Content Support</option>
-              <option>Events &amp; Brand Activations</option>
-              <option>Brand Collateral</option>
-              <option>Something else</option>
+              <option value="Brand &amp; Growth Audit">Brand &amp; Growth Audit</option>
+              <option value="Strategic Growth Partnership">Strategic Growth Partnership</option>
+              <option value="Brand Strategy &amp; Positioning">Brand Strategy &amp; Positioning</option>
+              <option value="Growth Strategy">Growth Strategy</option>
+              <option value="Client Experience">Client Experience</option>
+              <option value="Marketing &amp; Content Support">Marketing &amp; Content Support</option>
+              <option value="Events &amp; Brand Activations">Events &amp; Brand Activations</option>
+              <option value="Brand Collateral">Brand Collateral</option>
+              <option value="Something else">Something else</option>
             </select>
           </label>
           <label class="form-wide">
