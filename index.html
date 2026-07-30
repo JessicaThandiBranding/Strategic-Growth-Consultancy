@@ -8,11 +8,26 @@
       name="description"
       content="Strategic growth consultancy for ambitious brands, founders, and service-led businesses."
     />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/Hero_JTO_Website-760.webp"
+      imagesrcset="assets/Hero_JTO_Website-760.webp 760w, assets/Hero_JTO_Website-1100.webp 1100w, assets/Hero_JTO_Website-1600.webp 1600w"
+      imagesizes="(max-width: 620px) 100vw, (max-width: 860px) 100vw, 58vw"
+      type="image/webp"
+      fetchpriority="high"
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -20,7 +35,7 @@
     <header class="site-header" data-header>
       <a class="brand" href="#top" aria-label="JTO Strategic Growth Partner home">
         <span class="brand-mark">
-          <img src="assets/jto-monogram.png" alt="JTO" />
+          <img src="assets/jto-monogram-112.webp" alt="JTO" width="112" height="99" loading="eager" decoding="async" />
         </span>
         <span class="brand-divider"></span>
         <span class="brand-text">Strategic<br />Growth<br />Partner</span>
@@ -59,13 +74,39 @@
           </div>
           <p class="location-line">Cape Town <span></span> Strategy-led <span></span> Brand, growth &amp; client experience</p>
         </div>
-        <div class="hero-media" aria-label="Cape Town coastline and mountain view"></div>
+        <div class="hero-media" aria-label="Cape Town coastline and mountain view">
+          <picture class="hero-picture">
+            <source
+              type="image/webp"
+              srcset="assets/Hero_JTO_Website-760.webp 760w, assets/Hero_JTO_Website-1100.webp 1100w, assets/Hero_JTO_Website-1600.webp 1600w"
+              sizes="(max-width: 620px) 100vw, (max-width: 860px) 100vw, 58vw"
+            />
+            <img
+              src="assets/Hero_JTO_Website.png"
+              alt=""
+              width="1720"
+              height="914"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </picture>
+        </div>
       </section>
 
       <section class="about-section" id="about" aria-labelledby="about-title">
         <div class="side-label">Clarity. Strategy. Growth.</div>
         <figure class="portrait">
-          <img src="assets/About_JTO_Website.png" alt="Jessica seated in a neutral blazer" />
+          <img
+            src="assets/About_JTO_Website.png"
+            srcset="assets/About_JTO_Website-600.webp 600w, assets/About_JTO_Website-900.webp 900w"
+            sizes="(max-width: 860px) 100vw, 34vw"
+            alt="Jessica seated in a neutral blazer"
+            width="1395"
+            height="1127"
+            loading="lazy"
+            decoding="async"
+          />
         </figure>
         <div class="about-copy">
           <p class="eyebrow">About</p>
@@ -342,7 +383,16 @@
       </section>
 
       <section class="cape-band" aria-label="Cape Town perspective">
-        <img src="assets/PageBreak_CapeTown.png" alt="Cape Town mountain range at sunset" />
+        <img
+          src="assets/PageBreak_CapeTown.png"
+          srcset="assets/PageBreak_CapeTown-640.webp 640w, assets/PageBreak_CapeTown-1100.webp 1100w, assets/PageBreak_CapeTown-1600.webp 1600w"
+          sizes="100vw"
+          alt="Cape Town mountain range at sunset"
+          width="1983"
+          height="793"
+          loading="lazy"
+          decoding="async"
+        />
         <div>
           <p class="eyebrow">CLARITY &middot; INTENTION &middot; ALIGNMENT</p>
           <h2>Rooted in Cape Town.<br />Focused on your growth.</h2>
@@ -370,7 +420,16 @@
           </button>
         </article>
         <figure class="offer-image">
-          <img src="assets/Notebook_JTO_Website.png" alt="Notebook and pen on a sunlit stone surface" />
+          <img
+            src="assets/Notebook_JTO_Website.png"
+            srcset="assets/Notebook_JTO_Website-600.webp 600w, assets/Notebook_JTO_Website-900.webp 900w"
+            sizes="(max-width: 860px) 100vw, 27vw"
+            alt="Notebook and pen on a sunlit stone surface"
+            width="1402"
+            height="1122"
+            loading="lazy"
+            decoding="async"
+          />
         </figure>
         <article class="offer-card partnership-card">
           <button class="offer-trigger" type="button" data-panel-trigger="partnership-details" aria-expanded="false" aria-controls="panel-partnership-details">
@@ -458,7 +517,17 @@
       </section>
 
       <section class="contact-section" id="contact" aria-labelledby="contact-title">
-        <img class="contact-branch" src="assets/Contact_CapeTown_JTO_Website.png" alt="Cape Town coastline and mountain view" />
+        <img
+          class="contact-branch"
+          src="assets/Contact_CapeTown_JTO_Website.png"
+          srcset="assets/Contact_CapeTown_JTO_Website-600.webp 600w, assets/Contact_CapeTown_JTO_Website-1000.webp 1000w"
+          sizes="(max-width: 860px) 100vw, 27vw"
+          alt="Cape Town coastline and mountain view"
+          width="1453"
+          height="1083"
+          loading="lazy"
+          decoding="async"
+        />
         <div class="contact-copy">
           <p class="eyebrow centered">Let's Work Together</p>
           <h2 id="contact-title">Ready to bring more clarity, consistency and intention to your brand?</h2>
@@ -487,7 +556,17 @@
             </svg>
           </a>
         </div>
-        <img class="contact-lounge" src="assets/Contact_JTO_Website.png" alt="Jessica smiling in a neutral blazer" />
+        <img
+          class="contact-lounge"
+          src="assets/Contact_JTO_Website.png"
+          srcset="assets/Contact_JTO_Website-600.webp 600w, assets/Contact_JTO_Website-900.webp 900w"
+          sizes="(max-width: 860px) 100vw, 27vw"
+          alt="Jessica smiling in a neutral blazer"
+          width="1387"
+          height="1134"
+          loading="lazy"
+          decoding="async"
+        />
       </section>
 
       <section class="enquiry-section" id="enquiry" aria-labelledby="enquiry-title">
@@ -558,6 +637,6 @@
       </section>
     </main>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </body>
 </html>
