@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://strategic-growth-partner.netlify.app/sitemap.xml
+Sitemap: https://jessicaowens.co.za/sitemap.xml
