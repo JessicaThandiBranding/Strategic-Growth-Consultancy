@@ -1408,8 +1408,12 @@ em {
 @media (max-width: 620px) {
   .site-footer {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     gap: 8px;
+  }
+
+  .site-footer p {
+    text-align: center;
   }
 }
 
