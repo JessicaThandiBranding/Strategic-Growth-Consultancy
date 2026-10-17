@@ -350,7 +350,6 @@ em {
 
 .services-section {
   padding: 58px clamp(22px, 5vw, 76px) 0;
-  border-bottom: 1px solid var(--line);
   background: linear-gradient(180deg, var(--paper), var(--white));
   text-align: center;
 }
@@ -363,17 +362,19 @@ em {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 12px 24px;
-  margin: 0;
-  padding-block: 14px;
+  margin: 18px 0 0;
+  padding: 0;
   color: var(--accent-dark);
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.28em;
   line-height: 1.8;
-  text-align: center;
+  text-align: left;
 }
+
+.offer-main > .portfolio-line:not(.eyebrow) { color: var(--accent-dark); }
 
 .portfolio-projects {
   display: inline-flex;
@@ -402,6 +403,7 @@ em {
   .portfolio-line,
   .portfolio-projects {
     flex-direction: column;
+    align-items: flex-start;
     gap: 12px;
   }
 
@@ -1274,10 +1276,6 @@ em {
   .offer-section > .offer-panels {
     display: none;
     border-top: 0;
-  }
-
-  .portfolio-line {
-    border-top: 1px solid var(--line);
   }
 
   .panel-close {
