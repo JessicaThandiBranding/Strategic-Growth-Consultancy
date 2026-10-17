@@ -3,7 +3,6 @@ const toggle = document.querySelector("[data-nav-toggle]");
 const nav = document.querySelector("[data-nav]");
 const panelTriggers = document.querySelectorAll("[data-panel-trigger]");
 const servicePanelHome = document.querySelector('[data-panel-region="services"]');
-const offerPanelHome = document.querySelector('[data-panel-region="offers"]');
 const mobilePanelQuery = window.matchMedia("(max-width: 860px)");
 const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 const enquirySelect = document.querySelector("[data-enquiry-select]");
@@ -30,7 +29,7 @@ const closePanel = (panel, trigger, instant = false) => {
   window.clearTimeout(panelCloseTimers.get(panel));
 
   trigger?.setAttribute("aria-expanded", "false");
-  trigger?.closest(".service-card, .expandable-offer")?.classList.remove("is-active");
+  trigger?.closest(".service-card")?.classList.remove("is-active");
 
   if (instant || reducedMotionQuery.matches) {
     panel.hidden = true;
@@ -48,7 +47,6 @@ const closePanel = (panel, trigger, instant = false) => {
 };
 
 const isServiceTrigger = (trigger) => trigger?.classList.contains("card-trigger");
-const isOfferTrigger = (trigger) => trigger?.classList.contains("offer-trigger");
 
 const placeServicePanel = (panel, trigger) => {
   if (!panel || !trigger || !isServiceTrigger(trigger)) return;
@@ -61,24 +59,10 @@ const placeServicePanel = (panel, trigger) => {
   servicePanelHome?.append(panel);
 };
 
-const placeOfferPanel = (panel, trigger) => {
-  if (!panel || !trigger || !isOfferTrigger(trigger)) return;
-
-  if (mobilePanelQuery.matches) {
-    trigger.closest(".expandable-offer, .partnership-card")?.insertAdjacentElement("afterend", panel);
-    return;
-  }
-
-  offerPanelHome?.append(panel);
-};
-
 const openPanel = (panel, trigger) => {
   if (!panel || !trigger) return;
 
-  const regionSelector = isServiceTrigger(trigger)
-    ? '.service-panels [data-panel], .service-grid [data-panel]'
-    : '.offer-panels [data-panel], .offer-section > [data-panel]';
-  const regionPanels = document.querySelectorAll(regionSelector);
+  const regionPanels = document.querySelectorAll('.service-panels [data-panel], .service-grid [data-panel]');
 
   regionPanels.forEach((otherPanel) => {
     if (otherPanel !== panel) {
@@ -88,13 +72,12 @@ const openPanel = (panel, trigger) => {
   });
 
   placeServicePanel(panel, trigger);
-  placeOfferPanel(panel, trigger);
   window.clearTimeout(panelCloseTimers.get(panel));
   panel.hidden = false;
   panel.classList.remove("is-closing");
   panel.classList.add("is-visible");
   trigger.setAttribute("aria-expanded", "true");
-  trigger.closest(".service-card, .expandable-offer")?.classList.add("is-active");
+  trigger.closest(".service-card")?.classList.add("is-active");
 
   if (isServiceTrigger(trigger) && mobilePanelQuery.matches) {
     window.requestAnimationFrame(() => {
@@ -102,11 +85,6 @@ const openPanel = (panel, trigger) => {
     });
   }
 
-  if (isOfferTrigger(trigger) && mobilePanelQuery.matches) {
-    window.requestAnimationFrame(() => {
-      panel.scrollIntoView({ block: "nearest", behavior: reducedMotionQuery.matches ? "instant" : "smooth" });
-    });
-  }
 };
 
 toggle.addEventListener("click", () => {
@@ -200,9 +178,23 @@ mobilePanelQuery.addEventListener("change", () => {
   panelTriggers.forEach((trigger) => {
     const panel = document.getElementById(trigger.getAttribute("aria-controls"));
     placeServicePanel(panel, trigger);
-    placeOfferPanel(panel, trigger);
   });
 });
 
 window.addEventListener("scroll", syncHeader, { passive: true });
 syncHeader();
+
+const revealPricingOffer = () => {
+  const offer = document.getElementById(window.location.hash.slice(1));
+  if (!offer?.matches("details.pricing-offer")) return;
+  offer.open = true;
+  window.requestAnimationFrame(() => {
+    const summary = offer.querySelector("summary");
+    summary.focus({ preventScroll: true });
+    summary.scrollIntoView({ block: "start", behavior: "instant" });
+  });
+};
+
+window.addEventListener("hashchange", revealPricingOffer);
+window.addEventListener("load", revealPricingOffer);
+document.fonts.ready.then(revealPricingOffer);

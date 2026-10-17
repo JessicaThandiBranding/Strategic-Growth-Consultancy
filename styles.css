@@ -349,7 +349,9 @@ em {
 }
 
 .services-section {
-  padding: 58px clamp(22px, 5vw, 76px) 0;
+  --services-inset: clamp(22px, 5vw, 76px);
+  padding: 58px var(--services-inset) 0;
+  scroll-margin-top: var(--about-header-height, 82.5px);
   background: linear-gradient(180deg, var(--paper), var(--white));
   text-align: center;
 }
@@ -374,7 +376,7 @@ em {
   text-align: left;
 }
 
-.offer-main > .portfolio-line:not(.eyebrow) { color: var(--accent-dark); }
+.approach-section > .portfolio-line { color: var(--accent-dark); }
 
 .portfolio-projects {
   display: inline-flex;
@@ -1001,7 +1003,7 @@ em {
 }
 
 .service-panels {
-  border-top: 1px solid var(--line);
+  border-top: 0;
 }
 
 .offer-panels {
@@ -1716,6 +1718,40 @@ em {
 .button:focus-visible { outline: 1px solid var(--accent-dark); outline-offset: 4px; }
 .pricing-details { line-height: 1.8; }
 
+.featured-offers { position: relative; padding: 28px 0; text-align: left; }
+.featured-offers::before { content: ""; position: absolute; top: 0; left: calc(-1 * var(--services-inset)); right: calc(-1 * var(--services-inset)); border-top: 1px solid var(--line); pointer-events: none; }
+.featured-offer-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.featured-offers .offer-card { padding: 28px; background: transparent; }
+.featured-offers .offer-card + .offer-card { border-left: 0; }
+.featured-offers .offer-card:first-child { padding-left: 0; }
+.featured-offers .text-link { display: inline-block; margin-top: 12px; }
+.featured-offers .text-link::after { content: none; }
+.featured-offers > .approach-pricing-link { margin: 22px 0 0; }
+.featured-offers a:focus-visible { outline: 1px solid var(--accent-dark); outline-offset: 4px; }
+.approach-section { padding: 36px clamp(22px, 6vw, 90px); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--white); scroll-margin-top: var(--about-header-height, 82.5px); }
+.approach-section > h2 { max-width: 900px; font-size: 42px; line-height: 1.05; }
+.approach-process { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; margin: 28px 0; color: var(--muted); font-size: 14px; line-height: 1.75; }
+.process-introduction h3 { margin-bottom: 16px; color: var(--accent-dark); font-size: 28px; line-height: 1.1; }
+.process-introduction p { margin: 0; }
+.process-introduction p + p { margin-top: 14px; }
+.approach-process .engagement-steps li:last-child { margin-bottom: 0; }
+.pricing-offer > summary { scroll-margin-top: 82.5px; }
+
+@media (max-width: 860px) {
+  .approach-process { gap: 28px; }
+}
+
+@media (max-width: 620px) {
+  .featured-offer-grid,
+  .approach-process { grid-template-columns: 1fr; }
+  .featured-offers .offer-card { padding: 24px 0; }
+  .featured-offers .offer-card + .offer-card { border-left: 0; border-top: 0; }
+  .featured-offers .offer-card h3 { font-size: 30px; }
+  .approach-section { padding-block: 32px; scroll-margin-top: 72px; }
+  .approach-section > h2 { font-size: 36px; }
+  .pricing-offer > summary { scroll-margin-top: 72px; }
+}
+
 @media (min-width: 1025px) {
   .about-section .portrait { min-height: 360px; }
   .about-section .portrait img { object-position: 50% top; }
@@ -1728,6 +1764,34 @@ em {
   .cape-band div { padding-block: 20px; }
   .cape-band h2 { font-size: 30px; }
   .cape-band .eyebrow { font-size: 9px; margin-top: 12px; }
+}
+
+@media (min-width: 1200px) {
+  .services-section { padding-top: 24px; }
+  .services-section > .eyebrow { margin-bottom: 12px; }
+  .services-section > h2 { font-size: 40px; margin-bottom: 20px; }
+  .service-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .service-card { min-height: 0; padding: 8px 12px 16px; }
+  .card-trigger { display: grid; grid-template-rows: 32px 52px 1fr auto; gap: 10px; height: 100%; min-height: 0; }
+  .service-card svg { width: 32px; height: 32px; margin: 0 auto; }
+  .service-card h3 { min-height: 0; font-size: 22px; line-height: 1.1; }
+  .service-card p { min-height: 0; margin: 0; font-size: 13px; line-height: 1.6; }
+  .service-card .text-link { margin-top: 2px; }
+  .featured-offers { padding: 16px 0; }
+  .featured-offers > .eyebrow { margin-bottom: 12px; }
+  .featured-offers .offer-card { padding: 16px 24px; }
+  .featured-offers .offer-card h3 { font-size: 28px; margin-bottom: 10px; }
+  .featured-offers .offer-card p { font-size: 13px; line-height: 1.65; margin: 0; }
+  .featured-offers .text-link { margin-top: 10px; }
+  .featured-offers > .approach-pricing-link { margin-top: 16px; }
+}
+
+@media (min-width: 1200px) and (min-height: 720px) {
+  .services-section { --services-space: clamp(0px, calc((100svh - var(--about-header-height, 82.5px) - 624px) / 9), 32px); padding-top: calc(24px + var(--services-space)); }
+  .services-section > h2 { margin-bottom: calc(20px + var(--services-space)); }
+  .services-section .service-card { padding-block: calc(8px + var(--services-space)) calc(16px + var(--services-space)); }
+  .services-section .card-trigger { gap: calc(10px + var(--services-space)); }
+  .featured-offers { padding-block: calc(16px + var(--services-space)); }
 }
 
 @media (min-width: 1200px) and (min-height: 720px) {
@@ -1782,6 +1846,7 @@ em {
 
 @media (max-width: 620px) {
   .hero h1 { font-size: 44px; }
+  .services-section { scroll-margin-top: 72px; }
   .about-section { scroll-margin-top: 72px; }
   .hero-media::after { height: 64px; }
   .hero-copy { padding: 30px 22px 36px; }
