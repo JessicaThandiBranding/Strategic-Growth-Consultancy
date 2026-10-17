@@ -198,3 +198,28 @@ const revealPricingOffer = () => {
 window.addEventListener("hashchange", revealPricingOffer);
 window.addEventListener("load", revealPricingOffer);
 document.fonts.ready.then(revealPricingOffer);
+
+window.addEventListener("load", async () => {
+  if (window.location.hash !== "#approach") return;
+  await document.fonts.ready;
+  let settleTimer;
+  const userEvents = ["wheel", "touchstart", "keydown", "pointerdown"];
+  const cancelAlignment = () => {
+    window.clearTimeout(settleTimer);
+    window.removeEventListener("scroll", scheduleAlignment);
+    userEvents.forEach((type) => window.removeEventListener(type, cancelAlignment));
+  };
+  const alignApproach = () => {
+    cancelAlignment();
+    if (window.location.hash === "#approach") {
+      document.getElementById("approach")?.scrollIntoView({ block: "start", behavior: "instant" });
+    }
+  };
+  const scheduleAlignment = () => {
+    window.clearTimeout(settleTimer);
+    settleTimer = window.setTimeout(alignApproach, 180);
+  };
+  window.addEventListener("scroll", scheduleAlignment, { passive: true });
+  userEvents.forEach((type) => window.addEventListener(type, cancelAlignment, { once: true, passive: true }));
+  scheduleAlignment();
+});
