@@ -21,7 +21,15 @@ if (document.querySelector("#about") && "ResizeObserver" in window) {
       document.documentElement.style.setProperty("--about-header-height", `${header.getBoundingClientRect().height}px`);
     }
   });
-  aboutHeaderObserver.observe(header);
+  aboutHeaderObserver.observe(header, { box: "border-box" });
+}
+
+const siteFooter = document.querySelector(".site-footer");
+if (document.querySelector("#contact") && siteFooter && "ResizeObserver" in window) {
+  const footerObserver = new ResizeObserver(() => {
+    document.documentElement.style.setProperty("--site-footer-height", `${siteFooter.getBoundingClientRect().height}px`);
+  });
+  footerObserver.observe(siteFooter, { box: "border-box" });
 }
 
 const closePanel = (panel, trigger, instant = false) => {
@@ -199,7 +207,7 @@ window.addEventListener("hashchange", revealPricingOffer);
 window.addEventListener("load", revealPricingOffer);
 document.fonts.ready.then(revealPricingOffer);
 
-window.addEventListener("load", async () => {
+const settleApproachAnchor = async () => {
   if (window.location.hash !== "#approach") return;
   await document.fonts.ready;
   let settleTimer;
@@ -212,7 +220,11 @@ window.addEventListener("load", async () => {
   const alignApproach = () => {
     cancelAlignment();
     if (window.location.hash === "#approach") {
-      document.getElementById("approach")?.scrollIntoView({ block: "start", behavior: "instant" });
+      const approach = document.getElementById("approach");
+      if (approach) {
+        const top = window.scrollY + approach.getBoundingClientRect().top - header.getBoundingClientRect().bottom;
+        window.scrollTo({ top, behavior: "instant" });
+      }
     }
   };
   const scheduleAlignment = () => {
@@ -222,4 +234,7 @@ window.addEventListener("load", async () => {
   window.addEventListener("scroll", scheduleAlignment, { passive: true });
   userEvents.forEach((type) => window.addEventListener(type, cancelAlignment, { once: true, passive: true }));
   scheduleAlignment();
-});
+};
+
+window.addEventListener("load", settleApproachAnchor);
+window.addEventListener("hashchange", settleApproachAnchor);
