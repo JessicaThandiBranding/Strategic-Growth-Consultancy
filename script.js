@@ -4,12 +4,13 @@ const nav = document.querySelector("[data-nav]");
 const panelTriggers = document.querySelectorAll("[data-panel-trigger]");
 const servicePanelHome = document.querySelector('[data-panel-region="services"]');
 const offerPanelHome = document.querySelector('[data-panel-region="offers"]');
-const mobileServiceQuery = window.matchMedia("(max-width: 620px)");
 const mobilePanelQuery = window.matchMedia("(max-width: 860px)");
+const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 const enquirySelect = document.querySelector("[data-enquiry-select]");
 const enquiryLinks = document.querySelectorAll("[data-enquiry]");
 const enquiryForm = document.querySelector("[data-form]");
 const formSuccess = document.querySelector("[data-form-success]");
+const panelCloseTimers = new WeakMap();
 
 const syncHeader = () => {
   header.classList.toggle("is-scrolled", window.scrollY > 12);
@@ -17,11 +18,12 @@ const syncHeader = () => {
 
 const closePanel = (panel, trigger, instant = false) => {
   if (!panel || panel.hidden) return;
+  window.clearTimeout(panelCloseTimers.get(panel));
 
   trigger?.setAttribute("aria-expanded", "false");
   trigger?.closest(".service-card, .expandable-offer")?.classList.remove("is-active");
 
-  if (instant) {
+  if (instant || reducedMotionQuery.matches) {
     panel.hidden = true;
     panel.classList.remove("is-visible", "is-closing");
     return;
@@ -30,10 +32,10 @@ const closePanel = (panel, trigger, instant = false) => {
   panel.classList.remove("is-visible");
   panel.classList.add("is-closing");
 
-  window.setTimeout(() => {
+  panelCloseTimers.set(panel, window.setTimeout(() => {
     panel.hidden = true;
     panel.classList.remove("is-closing");
-  }, 200);
+  }, 200));
 };
 
 const isServiceTrigger = (trigger) => trigger?.classList.contains("card-trigger");
@@ -78,6 +80,7 @@ const openPanel = (panel, trigger) => {
 
   placeServicePanel(panel, trigger);
   placeOfferPanel(panel, trigger);
+  window.clearTimeout(panelCloseTimers.get(panel));
   panel.hidden = false;
   panel.classList.remove("is-closing");
   panel.classList.add("is-visible");
@@ -86,13 +89,13 @@ const openPanel = (panel, trigger) => {
 
   if (isServiceTrigger(trigger) && mobilePanelQuery.matches) {
     window.requestAnimationFrame(() => {
-      panel.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      panel.scrollIntoView({ block: "nearest", behavior: reducedMotionQuery.matches ? "instant" : "smooth" });
     });
   }
 
   if (isOfferTrigger(trigger) && mobilePanelQuery.matches) {
     window.requestAnimationFrame(() => {
-      panel.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      panel.scrollIntoView({ block: "nearest", behavior: reducedMotionQuery.matches ? "instant" : "smooth" });
     });
   }
 };
@@ -132,16 +135,32 @@ document.addEventListener("click", (event) => {
 
   const panel = closeButton.closest("[data-panel]");
   const trigger = document.querySelector(`[data-panel-trigger="${panel?.dataset.panel}"]`);
+  trigger?.focus({ preventScroll: true });
   closePanel(panel, trigger);
 });
+
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape") return;
+  const panel = event.target.closest?.("[data-panel]");
+  if (!panel) return;
+  const trigger = document.querySelector(`[data-panel-trigger="${panel.dataset.panel}"]`);
+  trigger?.focus({ preventScroll: true });
+  closePanel(panel, trigger);
+});
+
+const selectEnquiry = (value) => {
+  if (enquirySelect && Array.from(enquirySelect.options).some((option) => option.value === value)) {
+    enquirySelect.value = value;
+  }
+};
+
+selectEnquiry(new URLSearchParams(window.location.search).get("interest"));
 
 enquiryLinks.forEach((link) => {
   link.addEventListener("click", () => {
     const enquiryType = link.dataset.enquiry;
 
-    if (enquirySelect && enquiryType) {
-      enquirySelect.value = enquiryType;
-    }
+    selectEnquiry(enquiryType);
   });
 });
 
@@ -169,11 +188,10 @@ enquiryForm?.addEventListener("submit", async (event) => {
 });
 
 mobilePanelQuery.addEventListener("change", () => {
-  document.querySelectorAll(".service-grid [data-panel]").forEach((panel) => {
-    servicePanelHome?.append(panel);
-  });
-  document.querySelectorAll(".offer-section > [data-panel]").forEach((panel) => {
-    offerPanelHome?.append(panel);
+  panelTriggers.forEach((trigger) => {
+    const panel = document.getElementById(trigger.getAttribute("aria-controls"));
+    placeServicePanel(panel, trigger);
+    placeOfferPanel(panel, trigger);
   });
 });
 
