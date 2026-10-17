@@ -16,6 +16,15 @@ const syncHeader = () => {
   header.classList.toggle("is-scrolled", window.scrollY > 12);
 };
 
+if (document.querySelector("#about") && "ResizeObserver" in window) {
+  const aboutHeaderObserver = new ResizeObserver(() => {
+    if (header.classList.contains("is-scrolled") && window.innerWidth > 1024) {
+      document.documentElement.style.setProperty("--about-header-height", `${header.getBoundingClientRect().height}px`);
+    }
+  });
+  aboutHeaderObserver.observe(header);
+}
+
 const closePanel = (panel, trigger, instant = false) => {
   if (!panel || panel.hidden) return;
   window.clearTimeout(panelCloseTimers.get(panel));
