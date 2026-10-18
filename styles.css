@@ -1996,6 +1996,15 @@ em {
 .about-closing div { padding: 26px var(--gutter); }
 .about-closing h2 { max-width: none; font-size: 34px; line-height: 1.15; }
 .about-closing .eyebrow { margin: 12px 0 0; font-size: 10px; }
+.cape-band.about-closing { position: relative; }
+.about-closing::after { content: ""; position: absolute; bottom: 0; left: var(--gutter); right: var(--gutter); border-top: 1px solid var(--line); pointer-events: none; }
+@media (min-width: 1025px) {
+  .about-feature .about-copy { padding-top: 32px; padding-bottom: 32px; }
+  .about-feature .about-copy .eyebrow { margin-bottom: 14px; }
+  .about-feature .about-copy h2 { margin-bottom: 22px; }
+  .about-feature .about-copy p:not(.eyebrow) { font-size: 17px; line-height: 1.45; }
+  .about-feature .about-copy p:not(.eyebrow) + p:not(.eyebrow) { margin-top: 14px; }
+}
 body:has(#about:target) .site-nav a[href="#about"] {
   color: var(--accent-dark);
   text-decoration: underline;
@@ -2050,13 +2059,18 @@ button, input, select, textarea { font-family: var(--font-body); }
 .hero-media::before { content: none; }
 .hero-media::after { height: 100px; background: linear-gradient(var(--paper), transparent); }
 .hero-picture img { object-position: center; }
-.hero-copy { position: relative; width: 49%; max-width: 720px; padding: 48px 0 40px var(--gutter); }
+.hero-copy { position: relative; width: 49%; max-width: 720px; padding: 24px 0 64px var(--gutter); }
 .hero h1 { font-size: 82px; line-height: 0.96; max-width: none; }
 .hero .eyebrow { font-size: 11px; letter-spacing: 0.2em; margin-bottom: 28px; }
 .hero .intro { max-width: 510px; font-size: 18px; line-height: 1.55; margin: 32px 0 24px; }
-.hero .intro p + p { margin-top: 20px; }
+.hero .intro p + p { margin-top: 12px; }
 .hero .button { min-height: 44px; padding: 12px 28px; font-size: 11px; border-color: var(--accent); }
 .hero .location-line { margin-top: 28px; font-size: 9px; letter-spacing: 0.14em; }
+@media (min-width: 861px) {
+  .hero .eyebrow { margin-bottom: 16px; }
+  .hero .intro { margin-top: 16px; }
+  .hero .location-line { margin-top: 26px; }
+}
 @media (min-width: 1200px) {
   .services-section > h2 { font-size: 46px; }
   .services-section .card-trigger { grid-template-rows: 32px 56px 1fr auto; }
@@ -2075,7 +2089,7 @@ button, input, select, textarea { font-family: var(--font-body); }
   .hero-media { position: relative; order: -1; height: 300px; flex: none; }
   .hero-media::after { height: 64px; }
   .hero-picture img { object-position: right center; }
-  .hero-copy { width: 100%; max-width: none; padding: 32px var(--gutter) 36px; }
+  .hero-copy { width: 100%; max-width: none; padding: 24px var(--gutter) 44px; }
   .hero h1 { font-size: 64px; }
   .hero .intro { max-width: 560px; font-size: 18px; }
   .service-card { padding: 28px 20px; min-height: 0; }
@@ -2089,7 +2103,7 @@ button, input, select, textarea { font-family: var(--font-body); }
   .hero h1 { font-size: 50px; }
   .hero .eyebrow { font-size: 9px; }
   .hero .intro { font-size: 17px; line-height: 1.65; margin-block: 28px 26px; }
-  .hero .intro p + p { margin-top: 14px; }
+  .hero .intro p + p { margin-top: 10px; }
   .hero .location-line { margin-top: 22px; gap: 4px; font-size: 9px; }
   .service-card { padding: 30px 12px; }
   .service-card h3, .service-card p { min-height: 0; }
@@ -2111,8 +2125,8 @@ button, input, select, textarea { font-family: var(--font-body); }
 .services-section { --services-inset: var(--gutter); padding: 40px var(--services-inset) 0; }
 .services-section > .eyebrow { margin-bottom: 16px; }
 .services-section > h2 { font-size: 56px; line-height: 1.1; margin-bottom: 32px; }
-.services-section .service-card { min-height: 0; padding: 16px 20px 24px; }
-.services-section .card-trigger { display: grid; grid-template-rows: 36px 80px 1fr 44px; gap: 16px; height: 100%; min-height: 0; }
+.services-section .service-card { min-height: 0; padding: 16px 20px 16px; }
+.services-section .card-trigger { display: grid; grid-template-rows: 36px minmax(60px, auto) 1fr 44px; gap: 12px; height: 100%; min-height: 0; }
 .services-section .service-card svg { width: 36px; height: 36px; margin: 0 auto; }
 .services-section .service-card h3 { min-height: 0; font-size: 24px; line-height: 1.1; }
 .services-section .service-card p { min-height: 0; margin: 0; font-size: 16px; line-height: 1.5; }
@@ -2128,6 +2142,12 @@ button, input, select, textarea { font-family: var(--font-body); }
 .featured-offers .text-link { justify-self: start; align-self: end; min-height: 44px; display: inline-flex; align-items: center; margin: 0; }
 .featured-offers > .approach-pricing-link { margin: 28px 0 0; text-align: center; }
 .featured-offers .approach-pricing-link a { max-width: 100%; min-height: 44px; padding: 12px 28px; font-size: 11px; line-height: 1.5; letter-spacing: 0.18em; text-decoration: none; text-align: center; }
+@media (min-width: 1025px) {
+  .services-section .service-card h3 { font-size: 22px; }
+  .services-section .service-card p { font-size: 15px; }
+  .services-section .featured-offers .offer-card h3 { font-size: 28px; }
+  .services-section .featured-offers .offer-card p { font-size: 16px; }
+}
 @media (max-width: 1199px) {
   .services-section .service-card { padding-block: 24px; }
 }
@@ -2141,8 +2161,8 @@ button, input, select, textarea { font-family: var(--font-body); }
 @media (max-width: 620px) {
   .services-section { padding-top: 32px; }
   .services-section > h2 { font-size: 40px; margin-bottom: 24px; }
-  .services-section .service-card { padding: 28px 8px; }
-  .services-section .card-trigger { grid-template-rows: 36px auto auto 44px; gap: 16px; }
+  .services-section .service-card { padding: 28px 8px 24px; }
+  .services-section .card-trigger { grid-template-rows: 36px auto auto 44px; gap: 12px; }
   .services-section .service-card h3 { font-size: 28px; }
   .services-section .featured-offers { padding-block: 28px; }
   .featured-offers .offer-card h3 { font-size: 30px; }
@@ -2154,9 +2174,9 @@ button, input, select, textarea { font-family: var(--font-body); }
 .approach-feature .approach-copy > .eyebrow { margin-bottom: 26px; }
 .approach-feature .approach-copy h2 { max-width: none; font-size: 50px; line-height: 1.05; }
 .approach-feature .approach-copy h2 em { display: block; margin-top: 8px; }
-.approach-feature .process-introduction { max-width: 610px; margin: 30px 0; }
-.approach-feature .process-introduction p + p { margin-top: 22px; }
-.approach-feature .approach-copy h3 { padding-top: 24px; margin: 0 0 24px; border-top: 1px solid var(--line); font-family: var(--font-body); font-size: 11px; line-height: 1.5; letter-spacing: 0.24em; }
+.approach-feature .process-introduction { max-width: 610px; margin: 20px 0; }
+.approach-feature .process-introduction p + p { margin-top: 14px; }
+.approach-feature .approach-copy h3 { padding-top: 18px; margin: 0 0 16px; border-top: 1px solid var(--line); font-family: var(--font-body); font-size: 11px; line-height: 1.5; letter-spacing: 0.24em; }
 .approach-feature .engagement-steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin: 0; padding: 0; list-style: none; counter-reset: engagement; }
 .approach-feature .engagement-steps li { counter-increment: engagement; margin: 0; padding: 0 20px; border-left: 1px solid var(--line); }
 .approach-feature .engagement-steps li:first-child { border-left: 0; padding-left: 0; }
@@ -2169,6 +2189,12 @@ button, input, select, textarea { font-family: var(--font-body); }
 .approach-background::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--white) 0%, rgba(255, 253, 248, 0.85) 46%, rgba(255, 253, 248, 0) 66%); pointer-events: none; }
 .approach-feature > .portfolio-line { position: relative; width: 60%; margin-top: 36px; font-size: 10px; letter-spacing: 0.2em; gap: 12px 20px; }
 .approach-feature .portfolio-projects { flex-wrap: wrap; }
+@media (min-width: 1025px) {
+  .approach-feature .approach-copy { font-size: 17px; line-height: 1.55; }
+  .approach-feature .approach-copy h3,
+  .approach-feature .engagement-steps { max-width: 610px; }
+  .approach-feature .engagement-steps li { padding-inline: 12px; }
+}
 @media (max-width: 1199px) and (min-width: 1025px) {
   .approach-feature .approach-copy h2 { font-size: 46px; }
   .approach-feature .approach-copy { font-size: 17px; }
