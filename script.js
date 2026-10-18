@@ -211,6 +211,8 @@ const settleApproachAnchor = async () => {
   if (window.location.hash !== "#approach") return;
   await document.fonts.ready;
   let settleTimer;
+  let remainingChecks = 12;
+  let stableChecks = 0;
   const userEvents = ["wheel", "touchstart", "keydown", "pointerdown"];
   const cancelAlignment = () => {
     window.clearTimeout(settleTimer);
@@ -218,14 +220,21 @@ const settleApproachAnchor = async () => {
     userEvents.forEach((type) => window.removeEventListener(type, cancelAlignment));
   };
   const alignApproach = () => {
-    cancelAlignment();
     if (window.location.hash === "#approach") {
       const approach = document.getElementById("approach");
       if (approach) {
         const top = window.scrollY + approach.getBoundingClientRect().top - header.getBoundingClientRect().bottom;
-        window.scrollTo({ top, behavior: "instant" });
+        const delta = top - window.scrollY;
+        stableChecks = Math.abs(delta) < 1 ? stableChecks + 1 : 0;
+        if (Math.abs(delta) >= 1) window.scrollTo({ top, behavior: "instant" });
+        // Header resizing can change the viewport-sized sections above this anchor.
+        if (--remainingChecks > 0 && stableChecks < 3) {
+          settleTimer = window.setTimeout(alignApproach, 180);
+          return;
+        }
       }
     }
+    cancelAlignment();
   };
   const scheduleAlignment = () => {
     window.clearTimeout(settleTimer);

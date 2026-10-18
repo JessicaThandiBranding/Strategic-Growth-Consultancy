@@ -12,9 +12,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="preload" as="font" href="assets/fonts/belleza-regular.ttf" type="font/ttf" crossorigin />
+    <link rel="preload" as="font" href="assets/fonts/cormorant-regular.ttf" type="font/ttf" crossorigin />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="pricing-page">
@@ -37,7 +36,7 @@
 
       <section class="pricing-group" aria-labelledby="start-here-title">
         <h2 class="eyebrow" id="start-here-title">Start Here</h2>
-        <details class="pricing-offer">
+        <details class="pricing-offer" id="brand-customer-experience-review">
           <summary><span class="pricing-name">Brand &amp; Customer Experience Review</span><span class="pricing-price">R2,000.00</span><span class="pricing-icon" aria-hidden="true"></span></summary>
           <div class="pricing-details">
             <p>A focused review of how your business presents itself to a prospective customer, from their first impression to making an enquiry.</p>

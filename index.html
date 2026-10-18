@@ -42,18 +42,12 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preload" as="font" href="assets/fonts/belleza-regular.ttf" type="font/ttf" crossorigin />
+    <link rel="preload" as="font" href="assets/fonts/cormorant-regular.ttf" type="font/ttf" crossorigin />
     <link
       rel="preload"
       as="image"
-      href="assets/Hero_JTO_Website-760.webp"
-      imagesrcset="assets/Hero_JTO_Website-760.webp 760w, assets/Hero_JTO_Website-1100.webp 1100w, assets/Hero_JTO_Website-1600.webp 1600w"
-      imagesizes="(max-width: 1024px) 100vw, 60vw"
+      href="assets/coastal-horizon.webp"
       type="image/webp"
       fetchpriority="high"
     />
@@ -105,14 +99,13 @@
           <picture class="hero-picture">
             <source
               type="image/webp"
-              srcset="assets/Hero_JTO_Website-760.webp 760w, assets/Hero_JTO_Website-1100.webp 1100w, assets/Hero_JTO_Website-1600.webp 1600w"
-              sizes="(max-width: 1024px) 100vw, 60vw"
+              srcset="assets/coastal-horizon.webp"
             />
             <img
-              src="assets/Hero_JTO_Website.png"
+              src="assets/coastal-horizon-master.png"
               alt=""
-              width="1720"
-              height="914"
+              width="1672"
+              height="941"
               loading="eager"
               fetchpriority="high"
               decoding="async"
@@ -121,58 +114,41 @@
         </div>
       </section>
 
-      <section class="about-section" id="about" aria-labelledby="about-title">
-        <div class="side-label">Clarity. Strategy. Growth.</div>
-        <figure class="portrait">
+      <section class="about-section about-feature" id="about" aria-labelledby="about-title">
+        <picture class="about-background">
+          <source type="image/webp" srcset="assets/about-background.webp" />
           <img
-            src="assets/About_JTO_Website.png"
-            srcset="assets/About_JTO_Website-600.webp 600w, assets/About_JTO_Website-900.webp 900w, assets/About_JTO_Website.png 1395w"
-            sizes="(max-width: 860px) 100vw, (max-width: 1024px) 50vw, 42vw"
-            alt="Jessica seated in a neutral blazer"
-            width="1395"
-            height="1127"
+            src="assets/about-background-master.png"
+            alt="Jessica Owens overlooking the Cape Town coast at sunset"
+            width="1584"
+            height="993"
             loading="lazy"
             decoding="async"
           />
-        </figure>
+        </picture>
         <div class="about-copy">
           <p class="eyebrow">About</p>
           <h2 id="about-title">
-            More than marketing.<br />
-            <em>A strategic partner<br />for your next stage of growth.</em>
+            <i>More than marketing.</i><br />
+            <em>A strategic partner for your next stage of growth</em>
           </h2>
           <p>
-            A business can offer an excellent service and still find that its messaging, website or
-            customer journey falls short of the experience it wants to deliver. I help founders and
-            service-led businesses examine those gaps and decide what to address first. My work
-            draws on experience across marketing, business development, client experience, events and
-            brand strategy, with attention to both the bigger picture and the details customers notice.
+            I’m Jessica, and I work with ambitious founders and service-led businesses to bring clarity, focus and momentum to their next stage of growth. With a background across marketing, business development, client experience, events and brand strategy, I take a holistic view of what makes a business work, from the bigger picture to the details that shape how it’s experienced.
           </p>
           <p>
-            Depending on what you need, that might mean a focused review, a broader assessment,
-            website development or hands-on support with a defined project. I consider how your
-            positioning, communication and customer experience support the way your business operates
-            and grows. Together, we agree the priorities and a scope that fits your business, so you
-            know what the work involves and how to move forward.
+            I’m collaborative, commercial and hands-on, and I care about creating solutions that are practical, tailored and aligned with your goals. Whether you need a focused review, strategic guidance or hands-on support with a defined project, I’ll work alongside you to understand what you need, set clear priorities and help you move forward with confidence.
+          </p>
+          <p>
+            My approach is built on clarity, intention and alignment, so you can grow in a way that feels right for you, your business and the clients you serve.
           </p>
         </div>
       </section>
 
-      <section class="cape-band" aria-label="Cape Town perspective">
+      <section class="cape-band about-closing" aria-label="Cape Town perspective">
         <div>
-          <h2>Rooted in Cape Town.<br />Focused on your growth.</h2>
+          <h2>Rooted in Cape Town. Focused on your growth.</h2>
           <p class="eyebrow">CLARITY &middot; INTENTION &middot; ALIGNMENT</p>
         </div>
-        <img
-          src="assets/PageBreak_CapeTown.png"
-          srcset="assets/PageBreak_CapeTown-640.webp 640w, assets/PageBreak_CapeTown-1100.webp 1100w, assets/PageBreak_CapeTown-1600.webp 1600w"
-          sizes="(max-width: 620px) 100vw, 50vw"
-          alt="Cape Town mountain range at sunset"
-          width="1983"
-          height="793"
-          loading="lazy"
-          decoding="async"
-        />
       </section>
 
       <section class="services-section" id="services" aria-labelledby="services-title">
@@ -371,6 +347,11 @@
         <div class="featured-offers" aria-labelledby="featured-offers-title">
           <p class="eyebrow" id="featured-offers-title">Signature Offers</p>
           <div class="featured-offer-grid">
+            <article class="offer-card">
+              <h3>Brand &amp; Customer Experience Review</h3>
+              <p>A focused review of how your business presents itself to a prospective customer, from their first impression to making an enquiry.</p>
+              <a class="text-link" href="/services-pricing.html#brand-customer-experience-review">View Details &rarr;</a>
+            </article>
             <article class="offer-card" id="diagnostic">
               <h3>Brand &amp; Growth Diagnostic</h3>
               <p>A structured assessment of your positioning, brand presentation, customer experience and growth opportunities, connecting what customers see with how your business operates.</p>
@@ -382,38 +363,37 @@
               <a class="text-link" href="/services-pricing.html#ongoing-strategic-partnership">View Details &rarr;</a>
             </article>
           </div>
-          <p class="approach-pricing-link"><a href="/services-pricing.html">EXPLORE ALL SERVICES &amp; PRICING &rarr;</a></p>
+          <p class="approach-pricing-link"><a class="button button-ghost" href="/services-pricing.html">EXPLORE ALL SERVICES &amp; PRICING &rarr;</a></p>
         </div>
       </section>
 
-      <section class="approach-section" id="approach" aria-labelledby="approach-title">
+      <section class="approach-section approach-feature" id="approach" aria-labelledby="approach-title">
         <div class="approach-copy">
           <p class="eyebrow">My Approach</p>
-          <h2 id="approach-title">Clear thinking. Beautiful execution. <em>Practical growth.</em></h2>
+          <h2 id="approach-title">Clear thinking. Beautiful execution.<em>Practical growth.</em></h2>
           <div class="process-introduction">
-            <p>We start with your needs and agree an appropriate scope. A focused project can begin with a defined brief; a broader assessment is useful when the priorities need more investigation.</p>
-            <p>Work is primarily delivered remotely through questionnaires, email and shared documents, with calls arranged where useful.</p>
+            <p>A business can offer an excellent service and still find that its messaging, website or customer journey falls short of the experience it wants to deliver. I help founders and service-led businesses examine those gaps and decide what to address first.</p>
+            <p>My work draws on experience across marketing, business development, client experience, events and brand strategy, with attention to both the bigger picture and the details customers notice. Together, we agree the priorities and a scope that fits your business, so you know what the work involves and how to move forward.</p>
           </div>
-          <h3>How we work together</h3>
-          <ol class="engagement-steps">
-            <li><strong>Understand.</strong> Gather relevant information about the business, its customers and what you need.</li>
-            <li><strong>Assess.</strong> Examine the brand, customer journey and opportunities within the agreed scope.</li>
-            <li><strong>Prioritise.</strong> Review recommendations and agree the next steps.</li>
-            <li><strong>Deliver.</strong> Complete the agreed project or provide ongoing support.</li>
+          <h3 class="eyebrow">How we work together</h3>
+          <ol class="engagement-steps" role="list">
+            <li><h4>Understand</h4><p>We begin with your business, your customers, your challenges and what you want to achieve.</p></li>
+            <li><h4>Assess</h4><p>I examine the brand, customer journey and opportunities within our agreed scope.</p></li>
+            <li><h4>Prioritise</h4><p>We identify the most meaningful opportunities, agree on recommendations and next steps.</p></li>
+            <li><h4>Deliver</h4><p>I bring the agreed work to life, whether through a defined project or ongoing support.</p></li>
           </ol>
         </div>
-        <figure class="approach-portrait">
+        <picture class="approach-background">
+          <source type="image/webp" srcset="assets/approach-background.webp" />
           <img
-            src="assets/Contact_JTO_Website.png"
-            srcset="assets/Contact_JTO_Website-600.webp 600w, assets/Contact_JTO_Website-900.webp 900w, assets/Contact_JTO_Website.png 1387w"
-            sizes="(max-width: 620px) calc(100vw - 44px), (max-width: 860px) calc(100vw - 12vw), 34vw"
-            alt="Jessica Owens smiling, wearing a neutral blazer"
-            width="1387"
-            height="1134"
+            src="assets/approach-background-master.png"
+            alt="Jessica Owens smiling as she writes in a notebook beside her laptop"
+            width="1536"
+            height="1024"
             loading="lazy"
             decoding="async"
           />
-        </figure>
+        </picture>
         <p class="portfolio-line">
           <span>EXPLORE SOME OF MY WORK &rarr;</span>
           <span class="portfolio-projects">
@@ -424,20 +404,20 @@
         </p>
       </section>
 
-      <section class="contact-enquiry" id="contact" aria-labelledby="contact-title">
+      <section class="contact-enquiry contact-refined" id="contact" aria-labelledby="contact-title">
         <div class="contact-invitation">
           <p class="eyebrow">Let&rsquo;s Work Together</p>
-          <h2 id="contact-title">Ready to bring more clarity, consistency and intention to your brand?</h2>
+          <h2 id="contact-title">Let&rsquo;s talk about what&rsquo;s next for <em>your business.</em></h2>
           <p class="contact-introduction">Tell me a little about your business, what you have in mind and where you could use a fresh perspective. We can explore what would be useful and how I could help.</p>
           <div class="connection-details">
             <h3>Contact details</h3>
             <dl>
-              <dt>Phone:</dt>
-              <dd><a href="tel:+27763382467">+27 76 338 2467</a></dd>
-              <dt>Email:</dt>
-              <dd><a href="mailto:jessthandi.jo@gmail.com">jessthandi.jo@gmail.com</a></dd>
-              <dt>LinkedIn:</dt>
-              <dd><a href="https://www.linkedin.com/in/jessica-owens-jto/" target="_blank" rel="noopener noreferrer" aria-label="View Jessica Owens's LinkedIn profile (opens in a new tab)">View my profile &#8599;</a></dd>
+              <dt class="contact-label">Phone:</dt>
+              <dd><a href="tel:+27763382467"><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.19 18a19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.91-8.67A2 2 0 0 1 3.26 1h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.79a2 2 0 0 1-.45 2.11L7.24 8.89a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.89.34 1.83.58 2.79.7A2 2 0 0 1 22 16.92Z" /></svg></span><span class="contact-link-text">+27 76 338 2467</span></a></dd>
+              <dt class="contact-label">Email:</dt>
+              <dd><a href="mailto:jessthandi.jo@gmail.com"><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m2 6 10 7L22 6" /></svg></span><span class="contact-link-text">jessthandi.jo@gmail.com</span></a></dd>
+              <dt class="contact-label">LinkedIn:</dt>
+              <dd><a href="https://www.linkedin.com/in/jessica-owens-jto/" target="_blank" rel="noopener noreferrer" aria-label="View Jessica Owens's LinkedIn profile (opens in a new tab)"><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><rect x="3" y="9" width="4" height="12" /><circle cx="5" cy="4" r="2" /><path d="M11 21V9h4v2a4 4 0 0 1 7 3v7h-4v-7a1.5 1.5 0 0 0-3 0v7Z" /></svg></span><span class="contact-link-text">https://www.linkedin.com/in/jessica-owens-jto/ <span aria-hidden="true">&#8599;</span></span></a></dd>
             </dl>
           </div>
         </div>
@@ -493,7 +473,7 @@
           </label>
           <label class="form-wide">
             <span>Message / Tell me a little about what you need help with</span>
-            <textarea name="message" rows="6" required></textarea>
+            <textarea name="message" rows="5" required></textarea>
           </label>
           <button class="button form-submit" type="submit">Submit Enquiry</button>
           <p class="form-note">
