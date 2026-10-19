@@ -1681,6 +1681,11 @@ em {
 .hero .intro p + p { margin-top: 11px; }
 .hero .button { width: fit-content; min-height: 40px; padding: 10px 28px; font-size: 9px; letter-spacing: 0.16em; border-color: var(--line); }
 .hero .button:hover { background: rgba(166, 135, 82, 0.07); color: var(--accent-dark); border-color: var(--accent); transform: none; }
+.services-section .featured-offers > .approach-pricing-link .button { background: var(--accent); border-color: var(--accent); color: var(--white); }
+.services-section .featured-offers > .approach-pricing-link .button:hover,
+.services-section .featured-offers > .approach-pricing-link .button:focus,
+.services-section .featured-offers > .approach-pricing-link .button:active { background: var(--accent-dark); border-color: var(--accent-dark); color: var(--white); transform: none; }
+.services-section .featured-offers > .approach-pricing-link .button:focus-visible { outline: 1px solid var(--accent-dark); outline-offset: 4px; }
 .hero .location-line { display: flex; flex-wrap: wrap; gap: 8px 0; max-width: none; margin: 32px 0 0; font-size: 8px; letter-spacing: 0.12em; color: var(--accent-dark); }
 .hero .location-line span { white-space: nowrap; }
 .hero .location-line span::before { content: none; }
@@ -2125,47 +2130,50 @@ button, input, select, textarea { font-family: var(--font-body); }
 .services-section { --services-inset: var(--gutter); padding: 40px var(--services-inset) 0; }
 .services-section > .eyebrow { margin-bottom: 16px; }
 .services-section > h2 { font-size: 56px; line-height: 1.1; margin-bottom: 32px; }
-.services-section .service-card { min-height: 0; padding: 16px 20px 16px; }
-.services-section .card-trigger { display: grid; grid-template-rows: 36px minmax(60px, auto) 1fr 44px; gap: 12px; height: 100%; min-height: 0; }
-.services-section .service-card svg { width: 36px; height: 36px; margin: 0 auto; }
+.services-section .service-card { min-height: 0; padding: 14px 20px; }
+.services-section .card-trigger { display: grid; grid-template-rows: 36px minmax(48px, auto) 1fr 44px; gap: 8px; height: 100%; min-height: 0; }
+.services-section .service-card svg { width: 36px; height: 36px; margin: 0 auto; padding: 5px; border: 1px solid var(--line); border-radius: 50%; }
 .services-section .service-card h3 { min-height: 0; font-size: 24px; line-height: 1.1; }
-.services-section .service-card p { min-height: 0; margin: 0; font-size: 16px; line-height: 1.5; }
+.services-section .service-card p { min-height: 0; margin: 0; font-size: 15.5px; line-height: 1.55; }
 .services-section .service-card .text-link { display: flex; align-items: center; justify-content: center; margin: 0; }
+.services-section .service-card .text-link::after { content: none; }
 .services-section .featured-offers { padding: 32px 0; }
-.featured-offers > .eyebrow { margin-bottom: 24px; }
-.featured-offer-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.featured-offers .offer-card { display: grid; grid-template-rows: minmax(70px, auto) 1fr auto; align-content: start; gap: 16px; padding: 0 28px; }
+.featured-offers > .eyebrow { margin-bottom: 16px; }
+.featured-offer-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 10px; }
+.featured-offers .offer-card { display: grid; grid-row: span 3; grid-template-rows: subgrid; align-content: start; gap: 10px; padding: 0 28px; }
 .featured-offers .offer-card + .offer-card { border-left: 1px solid var(--line); }
 .featured-offers .offer-card:last-child { padding-right: 0; }
-.featured-offers .offer-card h3 { font-size: 32px; line-height: 1.1; margin: 0; }
-.featured-offers .offer-card p { font-size: 17px; line-height: 1.55; margin: 0; }
-.featured-offers .text-link { justify-self: start; align-self: end; min-height: 44px; display: inline-flex; align-items: center; margin: 0; }
+.featured-offers .offer-card h3 { font-size: 30px; line-height: 1.1; margin: 0; }
+.featured-offers .offer-card p { font-size: 17px; line-height: 1.55; margin: 6px 0 0; }
+.featured-offers .text-link { justify-self: start; align-self: end; min-height: 44px; display: inline-flex; align-items: center; margin: -2px 0 0; }
 .featured-offers > .approach-pricing-link { margin: 28px 0 0; text-align: center; }
 .featured-offers .approach-pricing-link a { max-width: 100%; min-height: 44px; padding: 12px 28px; font-size: 11px; line-height: 1.5; letter-spacing: 0.18em; text-decoration: none; text-align: center; }
 @media (min-width: 1025px) {
   .services-section .service-card h3 { font-size: 22px; }
-  .services-section .service-card p { font-size: 15px; }
-  .services-section .featured-offers .offer-card h3 { font-size: 28px; }
+  .services-section .service-card p { font-size: 14px; line-height: 1.6; }
+  .services-section .featured-offers .offer-card h3 { font-size: 26px; }
   .services-section .featured-offers .offer-card p { font-size: 16px; }
 }
 @media (max-width: 1199px) {
-  .services-section .service-card { padding-block: 24px; }
+  .services-section .service-card { padding-block: 20px; }
 }
 @media (max-width: 1024px) {
   .services-section > h2 { font-size: 48px; }
-  .featured-offer-grid { grid-template-columns: 1fr; }
-  .featured-offers .offer-card { grid-template-rows: auto auto auto; padding: 24px 0; gap: 12px; }
+  .featured-offer-grid { grid-template-columns: 1fr; row-gap: 0; }
+  .featured-offers .offer-card { grid-row: auto; grid-template-rows: auto auto auto; padding: 24px 0; gap: 10px; }
+  .featured-offers .offer-card:first-child { padding-top: 20px; }
+  .featured-offers .text-link { margin-top: -2px; }
   .featured-offers .offer-card + .offer-card { border-left: 0; border-top: 1px solid var(--line); }
   .featured-offers > .eyebrow { margin-bottom: 0; }
 }
 @media (max-width: 620px) {
   .services-section { padding-top: 32px; }
   .services-section > h2 { font-size: 40px; margin-bottom: 24px; }
-  .services-section .service-card { padding: 28px 8px 24px; }
-  .services-section .card-trigger { grid-template-rows: 36px auto auto 44px; gap: 12px; }
+  .services-section .service-card { padding: 24px 8px 18px; }
+  .services-section .card-trigger { grid-template-rows: 36px auto auto 44px; gap: 8px; }
   .services-section .service-card h3 { font-size: 28px; }
   .services-section .featured-offers { padding-block: 28px; }
-  .featured-offers .offer-card h3 { font-size: 30px; }
+  .featured-offers .offer-card h3 { font-size: 28px; }
   .featured-offers .approach-pricing-link a { padding-inline: 18px; letter-spacing: 0.12em; }
 }
 
@@ -2174,16 +2182,16 @@ button, input, select, textarea { font-family: var(--font-body); }
 .approach-feature .approach-copy > .eyebrow { margin-bottom: 26px; }
 .approach-feature .approach-copy h2 { max-width: none; font-size: 50px; line-height: 1.05; }
 .approach-feature .approach-copy h2 em { display: block; margin-top: 8px; }
-.approach-feature .process-introduction { max-width: 610px; margin: 20px 0; }
+.approach-feature .process-introduction { max-width: 690px; margin: 20px 0; }
 .approach-feature .process-introduction p + p { margin-top: 14px; }
-.approach-feature .approach-copy h3 { padding-top: 18px; margin: 0 0 16px; border-top: 1px solid var(--line); font-family: var(--font-body); font-size: 11px; line-height: 1.5; letter-spacing: 0.24em; }
+.approach-feature .approach-copy h3 { width: fit-content; padding: 0 0 12px; margin: 0 0 16px; border-top: 0; border-bottom: 1px solid var(--line); font-family: var(--font-body); font-size: 11px; line-height: 1.5; letter-spacing: 0.24em; }
 .approach-feature .engagement-steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin: 0; padding: 0; list-style: none; counter-reset: engagement; }
-.approach-feature .engagement-steps li { counter-increment: engagement; margin: 0; padding: 0 20px; border-left: 1px solid var(--line); }
+.approach-feature .engagement-steps li { counter-increment: engagement; margin: 0; padding: 0 12px; border-left: 1px solid var(--line); }
 .approach-feature .engagement-steps li:first-child { border-left: 0; padding-left: 0; }
 .approach-feature .engagement-steps li:last-child { padding-right: 0; }
-.approach-feature .engagement-steps li::before { content: counter(engagement, decimal-leading-zero); display: block; margin-bottom: 8px; color: var(--accent-dark); font-family: var(--font-heading); font-size: 44px; line-height: 1; }
-.approach-feature .engagement-steps h4 { margin: 0 0 10px; color: var(--ink); font-family: var(--font-heading); font-size: 28px; font-weight: 400; line-height: 1.1; }
-.approach-feature .engagement-steps p { margin: 0; font-size: 16px; line-height: 1.55; }
+.approach-feature .engagement-steps li::before { content: counter(engagement, decimal-leading-zero); display: block; margin-bottom: 6px; color: var(--accent-dark); font-family: var(--font-heading); font-size: 36px; line-height: 1; }
+.approach-feature .engagement-steps h4 { margin: 0 0 8px; color: var(--ink); font-family: var(--font-heading); font-size: 24px; font-weight: 400; line-height: 1.1; }
+.approach-feature .engagement-steps p { margin: 0; font-size: 15px; line-height: 1.55; }
 .approach-background { position: absolute; inset: 0; z-index: -1; }
 .approach-background img { width: 100%; height: 100%; object-fit: cover; object-position: right top; }
 .approach-background::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--white) 0%, rgba(255, 253, 248, 0.85) 46%, rgba(255, 253, 248, 0) 66%); pointer-events: none; }
@@ -2193,7 +2201,7 @@ button, input, select, textarea { font-family: var(--font-body); }
   .approach-feature .approach-copy { font-size: 17px; line-height: 1.55; }
   .approach-feature .approach-copy h3,
   .approach-feature .engagement-steps { max-width: 610px; }
-  .approach-feature .engagement-steps li { padding-inline: 12px; }
+  .approach-feature .engagement-steps li { padding-inline: 8px; }
 }
 @media (max-width: 1199px) and (min-width: 1025px) {
   .approach-feature .approach-copy h2 { font-size: 46px; }
