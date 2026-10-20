@@ -2196,9 +2196,10 @@ button, input, select, textarea { font-family: var(--font-body); }
 .approach-feature .engagement-steps li { counter-increment: engagement; margin: 0; padding: 0 12px; border-left: 1px solid var(--line); }
 .approach-feature .engagement-steps li:first-child { border-left: 0; padding-left: 0; }
 .approach-feature .engagement-steps li:last-child { padding-right: 0; }
-.approach-feature .engagement-steps li::before { content: counter(engagement, decimal-leading-zero); display: block; margin-bottom: 6px; color: var(--accent-dark); font-family: var(--font-heading); font-size: 36px; line-height: 1; }
-.approach-feature .engagement-steps h4 { margin: 0 0 8px; color: var(--ink); font-family: var(--font-heading); font-size: 24px; font-weight: 400; line-height: 1.1; }
-.approach-feature .engagement-steps p { margin: 0; font-size: 15px; line-height: 1.55; }
+.approach-feature .engagement-steps li::before { content: none; }
+.approach-feature .engagement-steps h4::before { content: counter(engagement, decimal-leading-zero) ". "; color: #a18e74; }
+.approach-feature .engagement-steps h4 { margin: 0 0 8px; color: var(--ink); font-family: var(--font-heading); font-size: 22px; font-weight: 400; line-height: 1.1; }
+.approach-feature .engagement-steps p { margin: 0; font-size: 14.5px; line-height: 1.55; }
 .approach-background { position: absolute; inset: 0; z-index: -1; }
 .approach-background img { width: 100%; height: 100%; object-fit: cover; object-position: right top; }
 .approach-background::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--white) 0%, rgba(255, 253, 248, 0.85) 46%, rgba(255, 253, 248, 0) 66%); pointer-events: none; }
@@ -2206,13 +2207,14 @@ button, input, select, textarea { font-family: var(--font-body); }
 .approach-feature .portfolio-projects { flex-wrap: wrap; }
 @media (min-width: 1025px) {
   .approach-feature .approach-copy { font-size: 17px; line-height: 1.55; }
-  .approach-feature .approach-copy h3,
-  .approach-feature .engagement-steps { max-width: 610px; }
+  .approach-feature .approach-copy h3 { max-width: 610px; }
+  .approach-feature .engagement-steps { max-width: 760px; }
   .approach-feature .engagement-steps li { padding-inline: 8px; }
 }
 @media (max-width: 1199px) and (min-width: 1025px) {
   .approach-feature .approach-copy h2 { font-size: 46px; }
   .approach-feature .approach-copy { font-size: 17px; }
+  .approach-feature .engagement-steps h4 { font-size: 20px; }
 }
 @media (max-width: 1024px) {
   .approach-feature .approach-copy { width: 100%; }
