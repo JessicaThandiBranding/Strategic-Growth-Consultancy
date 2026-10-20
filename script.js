@@ -10,9 +10,49 @@ const enquiryLinks = document.querySelectorAll("[data-enquiry]");
 const enquiryForm = document.querySelector("[data-form]");
 const formSuccess = document.querySelector("[data-form-success]");
 const panelCloseTimers = new WeakMap();
+const headerSections = document.querySelector(".hero")
+  ? [...document.querySelectorAll("main > section")]
+  : [];
 
 const syncHeader = () => {
   header.classList.toggle("is-scrolled", window.scrollY > 12);
+  if (!headerSections.length) return;
+  const sectionEdge = header.getBoundingClientRect().bottom + 2;
+  const section = headerSections.find((item) => {
+    const bounds = item.getBoundingClientRect();
+    return bounds.top <= sectionEdge && bounds.bottom > sectionEdge;
+  });
+  const surface = section?.matches(".about-feature, .approach-feature")
+    ? "image"
+    : section?.matches(".hero") ? "home" : "cream";
+  if (surface === "image") {
+    const picture = section.querySelector("picture");
+    const image = picture?.querySelector("img");
+    if (image?.naturalWidth) {
+      const bounds = image.getBoundingClientRect();
+      const scale = Math.max(bounds.width / image.naturalWidth, bounds.height / image.naturalHeight);
+      const width = image.naturalWidth * scale;
+      const height = image.naturalHeight * scale;
+      const fade = getComputedStyle(picture, "::after").backgroundImage;
+      header.style.setProperty("--header-section-image", `url("${image.currentSrc}")`);
+      header.style.setProperty("--header-section-fade", fade === "none" ? "linear-gradient(transparent, transparent)" : fade);
+      header.style.setProperty("--header-image-size", `${width}px ${height}px`);
+      // Extend only the background-only top edge, never the portrait or artwork below it.
+      header.style.setProperty("--header-image-position", `${bounds.right - width}px 0px`);
+      const edgeHeight = header.getBoundingClientRect().height + 3;
+      header.style.setProperty("--header-edge-height", `${edgeHeight}px`);
+      header.style.setProperty("--header-edge-scale", edgeHeight);
+    }
+  }
+  if (header.dataset.surface !== surface) header.dataset.surface = surface;
+};
+let headerFrame;
+const scheduleHeaderSync = () => {
+  if (headerFrame) return;
+  headerFrame = window.requestAnimationFrame(() => {
+    headerFrame = null;
+    syncHeader();
+  });
 };
 
 if (document.querySelector("#about") && "ResizeObserver" in window) {
@@ -189,7 +229,13 @@ mobilePanelQuery.addEventListener("change", () => {
   });
 });
 
-window.addEventListener("scroll", syncHeader, { passive: true });
+window.addEventListener("scroll", scheduleHeaderSync, { passive: true });
+window.addEventListener("resize", scheduleHeaderSync);
+window.addEventListener("load", scheduleHeaderSync);
+document.querySelectorAll(".about-background img, .approach-background img").forEach((image) => {
+  image.addEventListener("load", scheduleHeaderSync);
+});
+document.fonts.ready.then(scheduleHeaderSync);
 syncHeader();
 
 const revealPricingOffer = () => {
