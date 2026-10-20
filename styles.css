@@ -1621,12 +1621,12 @@ em {
 .pricing-page .pricing-intro .pricing-lead { font-size: 18px; line-height: 1.55; color: var(--ink); }
 .pricing-page .pricing-intro p:not(.eyebrow) { line-height: 1.7; }
 .pricing-page .pricing-intro .pricing-lead + p { margin-top: 12px; }
-.pricing-page .pricing-group > .eyebrow::after { content: ""; display: block; width: 112px; max-width: 100%; margin-top: 12px; border-bottom: 1px solid var(--line); }
+.pricing-page .pricing-group > .eyebrow { width: fit-content; max-width: 100%; }
+.pricing-page .pricing-group > .eyebrow::after { content: ""; display: block; width: 100%; margin-top: 12px; border-bottom: 1px solid var(--line); }
 .pricing-page .pricing-group > .pricing-offer:first-of-type { border-top: 0; }
 .pricing-page .pricing-offer[open] { background: var(--white); padding: 8px 24px 6px; }
 .pricing-page .pricing-details .pricing-explanation { font-size: 13.5px; line-height: 1.7; color: var(--muted); }
-.pricing-page .pricing-notes { position: relative; isolation: isolate; padding-block: 28px; margin-top: 28px; color: var(--ink); line-height: 1.7; }
-.pricing-page .pricing-notes::before { content: ""; position: absolute; inset: 0 calc(50% - 50vw); z-index: -1; background: var(--soft); }
+.pricing-page .pricing-notes { padding: 28px 24px; margin-top: 28px; background: var(--soft); color: var(--ink); line-height: 1.7; }
 .pricing-page .pricing-notes ul { margin-bottom: 0; }
 .pricing-page .pricing-information ul { max-width: 820px; padding-left: 20px; margin: 20px 0 0; color: var(--muted); font-size: 15px; line-height: 1.7; }
 .pricing-page .pricing-information li { margin-bottom: 10px; }
@@ -1648,6 +1648,7 @@ em {
 @media (max-width: 620px) {
   .pricing-content { padding-top: 132px; }
   .pricing-page .pricing-offer[open] { padding: 4px 16px 6px; }
+  .pricing-page .pricing-notes { padding: 24px 16px; }
   .pricing-page .pricing-name { font-size: 24px; }
   .pricing-page .pricing-information h2 { font-size: 30px; }
   .pricing-intro { margin-bottom: 28px; }
