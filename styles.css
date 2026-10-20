@@ -1509,7 +1509,7 @@ em {
 
 .pricing-intro {
   max-width: 850px;
-  margin-bottom: 56px;
+  margin-bottom: 36px;
 }
 
 .pricing-intro h1 {
@@ -1620,6 +1620,9 @@ em {
 .pricing-page .pricing-intro > .eyebrow { margin: 0 0 18px; color: var(--accent-dark); }
 .pricing-page .pricing-intro .pricing-lead { font-size: 18px; line-height: 1.55; color: var(--ink); }
 .pricing-page .pricing-intro p:not(.eyebrow) { line-height: 1.7; }
+.pricing-page .pricing-intro .pricing-lead + p { margin-top: 12px; }
+.pricing-page .pricing-group > .eyebrow::after { content: ""; display: block; width: 112px; max-width: 100%; margin-top: 12px; border-bottom: 1px solid var(--line); }
+.pricing-page .pricing-group > .pricing-offer:first-of-type { border-top: 0; }
 .pricing-page .pricing-offer[open] { background: var(--white); padding: 8px 24px 6px; }
 .pricing-page .pricing-details .pricing-explanation { font-size: 13.5px; line-height: 1.7; color: var(--muted); }
 .pricing-page .pricing-notes { position: relative; isolation: isolate; padding-block: 28px; margin-top: 28px; color: var(--ink); line-height: 1.7; }
@@ -1630,9 +1633,9 @@ em {
 .pricing-page .pricing-information li::marker { color: var(--accent); }
 .pricing-page .pricing-information li:last-child { margin-bottom: 0; }
 .pricing-page .pricing-content .eyebrow { font-size: 10px; }
-.pricing-page .pricing-name { font-size: 30px; }
-.pricing-page .pricing-price { font-size: 12.5px; }
-.pricing-page .pricing-price small { font-size: 10.5px; }
+.pricing-page .pricing-name { font-size: 28px; }
+.pricing-page .pricing-price { font-size: 12.5px; letter-spacing: 0.04em; }
+.pricing-page .pricing-price small { font-size: 10.5px; letter-spacing: 0; }
 .pricing-page .pricing-details,
 .pricing-page .pricing-information p { font-size: 15px; }
 .pricing-page .pricing-notes { font-size: 14px; }
@@ -1645,9 +1648,9 @@ em {
 @media (max-width: 620px) {
   .pricing-content { padding-top: 132px; }
   .pricing-page .pricing-offer[open] { padding: 4px 16px 6px; }
-  .pricing-page .pricing-name { font-size: 26px; }
+  .pricing-page .pricing-name { font-size: 24px; }
   .pricing-page .pricing-information h2 { font-size: 30px; }
-  .pricing-intro { margin-bottom: 38px; }
+  .pricing-intro { margin-bottom: 28px; }
   .pricing-intro h1 { font-size: 44px; }
   .pricing-offer > summary { grid-template-columns: minmax(0, 1fr) 18px; gap: 12px 18px; padding-block: 22px; }
   .pricing-name { font-size: 26px; }
