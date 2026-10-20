@@ -252,12 +252,22 @@ document.querySelectorAll(".about-background img, .approach-background img").for
 document.fonts.ready.then(scheduleHeaderSync);
 syncHeader();
 
+const signatureOfferSummaries = document.querySelectorAll(
+  "#brand-customer-experience-review > summary, #brand-growth-diagnostic > summary, #ongoing-strategic-partnership > summary"
+);
+signatureOfferSummaries.forEach((summary) => {
+  const restoreFocusIndicator = () => summary.classList.remove("is-link-arrival");
+  summary.addEventListener("blur", restoreFocusIndicator);
+  summary.addEventListener("keydown", restoreFocusIndicator);
+});
+
 const revealPricingOffer = () => {
   const offer = document.getElementById(window.location.hash.slice(1));
   if (!offer?.matches("details.pricing-offer")) return;
   offer.open = true;
   window.requestAnimationFrame(() => {
     const summary = offer.querySelector("summary");
+    if ([...signatureOfferSummaries].includes(summary)) summary.classList.add("is-link-arrival");
     summary.focus({ preventScroll: true });
     summary.scrollIntoView({ block: "start", behavior: "instant" });
   });

@@ -1822,6 +1822,7 @@ em {
 .approach-portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% top; }
 .approach-section > .portfolio-line { grid-column: 1; margin: 0; align-self: end; }
 .pricing-offer > summary { scroll-margin-top: 82.5px; }
+.pricing-offer > summary.is-link-arrival:focus { outline: none; }
 
 @media (max-width: 860px) {
   .approach-section { grid-template-columns: 1fr; }
