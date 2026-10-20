@@ -2010,7 +2010,7 @@ em {
   .about-feature .about-copy p:not(.eyebrow) { font-size: 17px; line-height: 1.45; }
   .about-feature .about-copy p:not(.eyebrow) + p:not(.eyebrow) { margin-top: 14px; }
 }
-body:has(#about:target) .site-nav a[href="#about"] {
+.site-nav a[aria-current="location"] {
   color: var(--accent-dark);
   text-decoration: underline;
   text-underline-offset: 8px;

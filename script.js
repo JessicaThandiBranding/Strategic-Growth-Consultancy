@@ -13,6 +13,13 @@ const panelCloseTimers = new WeakMap();
 const headerSections = document.querySelector(".hero")
   ? [...document.querySelectorAll("main > section")]
   : [];
+const sectionNavLinks = [...nav.querySelectorAll('a[href^="#"]')];
+const setActiveSection = (id) => {
+  sectionNavLinks.forEach((link) => {
+    if (link.getAttribute("href") === `#${id}`) link.setAttribute("aria-current", "location");
+    else link.removeAttribute("aria-current");
+  });
+};
 
 const syncHeader = () => {
   header.classList.toggle("is-scrolled", window.scrollY > 12);
@@ -25,6 +32,10 @@ const syncHeader = () => {
   const surface = section?.matches(".about-feature, .approach-feature")
     ? "image"
     : section?.matches(".hero") ? "home" : "cream";
+  const activeId = section?.matches(".hero") ? "top"
+    : section?.matches(".about-closing") ? "about"
+    : section?.id || "contact";
+  setActiveSection(activeId);
   if (surface === "image") {
     const picture = section.querySelector("picture");
     const image = picture?.querySelector("img");
@@ -143,6 +154,9 @@ toggle.addEventListener("click", () => {
 
 nav.addEventListener("click", (event) => {
   if (event.target instanceof HTMLAnchorElement) {
+    if (headerSections.length && sectionNavLinks.includes(event.target)) {
+      setActiveSection(event.target.hash.slice(1));
+    }
     nav.classList.remove("is-open");
     toggle.setAttribute("aria-expanded", "false");
     toggle.setAttribute("aria-label", "Open navigation");
