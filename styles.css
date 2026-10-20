@@ -6,6 +6,13 @@
   font-display: swap;
 }
 @font-face {
+  font-family: Manrope;
+  src: url("assets/fonts/manrope-variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+}
+@font-face {
   font-family: "Cormorant Garamond";
   src: url("assets/fonts/cormorant-regular.ttf") format("truetype");
   font-style: normal;
@@ -1608,6 +1615,20 @@ em {
 .pricing-contact { display: grid; gap: 4px; margin-bottom: 24px; font-size: 13px; color: var(--accent-dark); }
 .pricing-contact a { width: fit-content; overflow-wrap: anywhere; }
 .pricing-enquiry .button { padding-block: 14px; text-align: center; }
+
+.pricing-page .pricing-content { --font-body: Manrope, Arial, sans-serif; font-family: var(--font-body); }
+.pricing-page .pricing-intro > .eyebrow { margin: 0 0 18px; color: var(--accent-dark); }
+.pricing-page .pricing-intro .pricing-lead { font-size: 20px; line-height: 1.55; color: var(--ink); }
+.pricing-page .pricing-intro p:not(.eyebrow) { line-height: 1.7; }
+.pricing-page .pricing-offer[open] { background: var(--white); }
+.pricing-page .pricing-details .pricing-explanation { font-size: 14px; line-height: 1.7; color: var(--muted); }
+.pricing-page .pricing-notes { position: relative; isolation: isolate; padding-block: 28px; margin-top: 28px; color: var(--ink); line-height: 1.7; }
+.pricing-page .pricing-notes::before { content: ""; position: absolute; inset: 0 calc(50% - 50vw); z-index: -1; background: var(--soft); }
+.pricing-page .pricing-notes ul { margin-bottom: 0; }
+.pricing-page .pricing-information ul { max-width: 820px; padding-left: 20px; margin: 20px 0 0; color: var(--muted); font-size: 16px; line-height: 1.7; }
+.pricing-page .pricing-information li { margin-bottom: 10px; }
+.pricing-page .pricing-information li::marker { color: var(--accent); }
+.pricing-page .pricing-information li:last-child { margin-bottom: 0; }
 
 @media (max-width: 620px) {
   .pricing-content { padding-top: 132px; }

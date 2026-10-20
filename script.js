@@ -198,8 +198,13 @@ document.addEventListener("keydown", (event) => {
 });
 
 const selectEnquiry = (value) => {
-  if (enquirySelect && Array.from(enquirySelect.options).some((option) => option.value === value)) {
-    enquirySelect.value = value;
+  const legacyInterests = {
+    "Brand & Customer Experience Review": "First Impressions & Brand Review",
+    "Brand & Growth Implementation": "Brand Building Projects",
+  };
+  const interest = legacyInterests[value] || value;
+  if (enquirySelect && Array.from(enquirySelect.options).some((option) => option.value === interest)) {
+    enquirySelect.value = interest;
   }
 };
 
