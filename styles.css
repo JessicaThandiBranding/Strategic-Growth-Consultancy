@@ -156,6 +156,26 @@ summary::-webkit-details-marker {
   color: var(--accent-dark);
 }
 
+.nav-dropdown { position: relative; }
+.nav-services-toggle { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0; border: 0; background: transparent; color: inherit; font: inherit; letter-spacing: inherit; text-transform: inherit; cursor: pointer; }
+.nav-services-toggle:hover { color: var(--accent-dark); }
+.nav-services-toggle:focus-visible { outline: 1px solid var(--accent-dark); outline-offset: 4px; }
+.nav-chevron { width: 5px; height: 5px; border-right: 1px solid currentColor; border-bottom: 1px solid currentColor; transform: translateY(-2px) rotate(45deg); }
+.nav-services-toggle[aria-expanded="true"] .nav-chevron { transform: translateY(1px) rotate(225deg); }
+.nav-dropdown-menu { position: absolute; top: 100%; left: 0; width: 276px; padding: 8px 12px; background: rgba(247, 244, 237, 0.82); backdrop-filter: blur(8px); letter-spacing: 0.12em; }
+.nav-dropdown-menu a { display: flex; align-items: center; min-height: 44px; padding: 10px 4px; line-height: 1.6; }
+@media (min-width: 861px) {
+  .nav-dropdown-menu { top: calc(100% + var(--services-nav-offset, 20px)); width: max-content; padding: 4px 12px; background: #bfa982; }
+  .site-nav .nav-dropdown .nav-dropdown-menu a { min-height: 36px; padding-block: 6px; white-space: nowrap; color: var(--white); }
+  .site-nav .nav-dropdown-menu a:focus-visible { outline-color: var(--white); }
+  .nav-dropdown-menu::before { content: ""; position: absolute; inset: calc(-1 * var(--services-nav-offset, 20px)) 0 auto; height: var(--services-nav-offset, 20px); }
+}
+@media (max-width: 860px) {
+  .nav-services-toggle { width: 100%; padding: 13px 8px; justify-content: space-between; text-align: left; }
+  .nav-dropdown-menu { position: static; width: auto; padding: 0 0 6px 12px; background: transparent; backdrop-filter: none; }
+  .site-nav .nav-dropdown-menu a { padding: 10px 8px; }
+}
+
 .button {
   display: inline-flex;
   min-height: 43px;
@@ -1683,6 +1703,7 @@ em {
   color: var(--accent-dark);
   font-size: 14px;
   font-weight: 600;
+  letter-spacing: 0.02em;
   line-height: 1.2;
 }
 
@@ -2082,7 +2103,9 @@ em {
   .about-feature .about-copy p:not(.eyebrow) { font-size: 17px; line-height: 1.45; }
   .about-feature .about-copy p:not(.eyebrow) + p:not(.eyebrow) { margin-top: 14px; }
 }
-.site-nav a[aria-current="location"] {
+.site-nav a[aria-current="location"],
+.site-nav a[aria-current="page"],
+.nav-services-toggle[aria-current] {
   color: var(--accent-dark);
   text-decoration: underline;
   text-underline-offset: 8px;

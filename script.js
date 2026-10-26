@@ -1,6 +1,9 @@
 const header = document.querySelector("[data-header]");
 const toggle = document.querySelector("[data-nav-toggle]");
 const nav = document.querySelector("[data-nav]");
+const servicesNav = nav.querySelector("[data-services-nav]");
+const servicesNavToggle = servicesNav?.querySelector(".nav-services-toggle");
+const servicesNavMenu = servicesNav?.querySelector(".nav-dropdown-menu");
 const panelTriggers = document.querySelectorAll("[data-panel-trigger]");
 const servicePanelHome = document.querySelector('[data-panel-region="services"]');
 const mobilePanelQuery = window.matchMedia("(max-width: 860px)");
@@ -19,6 +22,10 @@ const setActiveSection = (id) => {
     if (link.getAttribute("href") === `#${id}`) link.setAttribute("aria-current", "location");
     else link.removeAttribute("aria-current");
   });
+  if (servicesNavToggle) {
+    if (id === "services") servicesNavToggle.setAttribute("aria-current", "location");
+    else servicesNavToggle.removeAttribute("aria-current");
+  }
 };
 
 const syncHeader = () => {
@@ -146,10 +153,64 @@ const openPanel = (panel, trigger) => {
 
 };
 
+let servicesOpenedByHover = false;
+const syncServicesNavPosition = () => {
+  if (!servicesNav || mobilePanelQuery.matches) return;
+  const offset = header.getBoundingClientRect().bottom - servicesNav.getBoundingClientRect().bottom + 4;
+  servicesNav.style.setProperty("--services-nav-offset", `${offset}px`);
+};
+const setServicesNavOpen = (open, fromHover = false) => {
+  if (!servicesNavToggle || !servicesNavMenu) return;
+  if (open) syncServicesNavPosition();
+  servicesOpenedByHover = open && fromHover;
+  servicesNavToggle.setAttribute("aria-expanded", String(open));
+  servicesNavMenu.hidden = !open;
+};
+if (servicesNav) {
+  if ("ResizeObserver" in window) new ResizeObserver(syncServicesNavPosition).observe(header);
+  window.addEventListener("resize", syncServicesNavPosition);
+  if (document.body.classList.contains("pricing-page")) servicesNavToggle.setAttribute("aria-current", "page");
+  servicesNavToggle.addEventListener("click", () => {
+    setServicesNavOpen(servicesOpenedByHover || servicesNavToggle.getAttribute("aria-expanded") !== "true");
+  });
+  servicesNavToggle.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      setServicesNavOpen(true);
+      const links = servicesNavMenu.querySelectorAll("a");
+      links[event.key === "ArrowDown" ? 0 : links.length - 1].focus();
+    }
+  });
+  servicesNav.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      event.stopPropagation();
+      setServicesNavOpen(false);
+      servicesNavToggle.focus();
+    }
+  });
+  servicesNav.addEventListener("pointerenter", (event) => {
+    if (event.pointerType === "mouse" && !mobilePanelQuery.matches) setServicesNavOpen(true, true);
+  });
+  servicesNav.addEventListener("pointerleave", (event) => {
+    if (event.pointerType === "mouse" && !servicesNav.contains(document.activeElement)) setServicesNavOpen(false);
+  });
+  servicesNav.addEventListener("focusout", () => {
+    window.requestAnimationFrame(() => {
+      if (!servicesNav.contains(document.activeElement)) setServicesNavOpen(false);
+    });
+  });
+  document.addEventListener("click", (event) => {
+    if (!servicesNav.contains(event.target)) setServicesNavOpen(false);
+  });
+  mobilePanelQuery.addEventListener("change", () => setServicesNavOpen(false));
+}
+
 toggle.addEventListener("click", () => {
   const isOpen = nav.classList.toggle("is-open");
   toggle.setAttribute("aria-expanded", String(isOpen));
   toggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+  if (!isOpen) setServicesNavOpen(false);
 });
 
 nav.addEventListener("click", (event) => {
@@ -160,6 +221,7 @@ nav.addEventListener("click", (event) => {
     nav.classList.remove("is-open");
     toggle.setAttribute("aria-expanded", "false");
     toggle.setAttribute("aria-label", "Open navigation");
+    setServicesNavOpen(false);
   }
 });
 
