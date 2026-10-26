@@ -322,3 +322,47 @@ const settleApproachAnchor = async () => {
 
 window.addEventListener("load", settleApproachAnchor);
 window.addEventListener("hashchange", settleApproachAnchor);
+
+const footerPanels = [...document.querySelectorAll(".footer-legal-panel")];
+const footerToggles = [...document.querySelectorAll(".footer-disclosure-toggle")];
+const showFooterPanel = (id) => {
+  const panel = footerPanels.find((item) => item.id === id);
+  if (!panel) return;
+  footerPanels.forEach((item) => { item.hidden = item !== panel; });
+  footerToggles.forEach((button) => button.setAttribute("aria-expanded", String(button.getAttribute("aria-controls") === id)));
+  window.requestAnimationFrame(() => {
+    panel.focus({ preventScroll: true });
+    panel.scrollIntoView({ block: "start", behavior: reducedMotionQuery.matches ? "instant" : "smooth" });
+  });
+};
+const closeFooterPanel = (panel) => {
+  panel.hidden = true;
+  const button = footerToggles.find((item) => item.getAttribute("aria-controls") === panel.id);
+  button?.setAttribute("aria-expanded", "false");
+  button?.focus({ preventScroll: true });
+  button?.scrollIntoView({ block: "nearest", behavior: "instant" });
+};
+footerToggles.forEach((button) => {
+  button.addEventListener("click", () => {
+    const panel = document.getElementById(button.getAttribute("aria-controls"));
+    if (panel.hidden) showFooterPanel(panel.id);
+    else closeFooterPanel(panel);
+  });
+});
+footerPanels.forEach((panel) => {
+  panel.querySelector("[data-footer-close]").addEventListener("click", () => closeFooterPanel(panel));
+  panel.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") { event.preventDefault(); closeFooterPanel(panel); }
+  });
+});
+const revealFooterDisclosure = () => showFooterPanel(window.location.hash.slice(1));
+
+document.querySelectorAll("[data-footer-disclosure-link]").forEach((link) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    window.history.pushState(null, "", link.hash);
+    showFooterPanel(link.hash.slice(1));
+  });
+});
+window.addEventListener("hashchange", revealFooterDisclosure);
+window.addEventListener("load", revealFooterDisclosure);
